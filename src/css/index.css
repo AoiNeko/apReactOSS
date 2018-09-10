@@ -1,0 +1,29 @@
+@import '~antd/dist/antd.css';
+
+.rlist {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.rlist p {
+    word-wrap: break-word;
+}
+
+#index {
+    display: block;
+}
+
+#content {
+    display: flex;
+}
+
+.logo {
+  width: 120px;
+  height: 31px;
+  background: rgba(255,255,255,.2);  
+  margin: 16px 28px 16px 0;
+  line-height: 31px;
+  text-align: center;
+  float: left;
+  color: white;
+}
