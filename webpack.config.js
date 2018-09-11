@@ -19,13 +19,22 @@ module.exports = {
     extensions: ['.js', '.jsx']
   },
   devServer: {
-        historyApiFallback:true
+    historyApiFallback: true
   },
   module: {
     rules: [{
-      test: /\.jsx?$/,
-      use: ['babel-loader'],
+      test: /\.(js|jsx)$/,
+      use: {
+        loader: 'babel-loader',
+        options: {
+          presets: [
+            "es2015", "react", 'stage-1',
+          ],
+          plugins: ['transform-decorators-legacy','transform-decorators']
+        }
+      },
       include: path.join(__dirname, 'src')
+
     },
     {
       test: /\.css$/,
