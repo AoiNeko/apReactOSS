@@ -21,6 +21,7 @@ class ApIndex extends Component {
   }
 
   handleClick(e) {
+    console.log(e)
     this.props.history.push("/p/payconfig")
   }
 

@@ -5,6 +5,7 @@ import DevTools from "mobx-react-devtools"
 
 import './css/index.css';
 import ApIndex from './components/ApIndex'
+import  Login from './components/Login'
 
 
 render(
@@ -13,6 +14,7 @@ render(
     <BrowserRouter>
       <Switch>
         <Route exact path="/" component={ApIndex}></Route>
+        <Route  path="/login" component={Login}></Route>
         <Route path="/p/:res" component={ApIndex}></Route>
       </Switch>
     </BrowserRouter>

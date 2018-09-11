@@ -17,6 +17,23 @@
     display: flex;
 }
 
+#loginForm {
+    margin-top: 30vh;
+    display: flex;
+    justify-content: center;
+    height: 5vh;
+}
+#loginForm .login-form {
+  max-width: 1000px;
+  width: 30vw;
+}
+#loginForm .login-form-forgot {
+  float: right;
+}
+#loginForm .login-form-button {
+  width: 100%;
+}
+
 .logo {
   width: 120px;
   height: 31px;
