@@ -22,22 +22,21 @@ class ApIndex extends Component {
 
   handleClick(e) {
     console.log(e)
-    this.props.history.push("/p/payconfig")
+    let {res} = e.item.props
+    this.props.history.push("/p/" + res)
   }
 
 
   render() {
     const { props } = this 
     const res = props.match.params.res ? props.match.params.res: "index"
-    console.log(res)
-    console.log(store.menuList)
     return (
       <Layout>
         <Header>
            <div className="logo">支付平台</div>
         </Header>
         <Layout>
-          <Sider>
+          <Sider style={{minHeight: "100%"}}>
             <Menu
               onClick={this.handleClick}
 
@@ -46,10 +45,10 @@ class ApIndex extends Component {
               mode="inline">
               {
                 store.userMenu.map((menu) => {
-                  return (<SubMenu key={menu.id} title={<span><Icon type="mail" /><span>{menu.name}</span></span>}>
+                  return (<SubMenu key={menu.id} res={menu.resource} title={<span><Icon type="mail" /><span>{menu.name}</span></span>}>
                     {
                       menu.children ? menu.children.map((subMenu) =>
-                        <Menu.Item key={subMenu.id}>{subMenu.name}</Menu.Item>
+                        <Menu.Item key={subMenu.id} res={subMenu.resource}>{subMenu.name}</Menu.Item>
                       ) : ""
                     }
 
@@ -60,7 +59,7 @@ class ApIndex extends Component {
             </Menu>
           </Sider>
           <Content>
-            <Page res={res}/>
+            <Page res={res} history={this.props.history}/>
           </Content>
 
 

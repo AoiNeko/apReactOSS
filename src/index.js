@@ -14,6 +14,7 @@ render(
     <BrowserRouter>
       <Switch>
         <Route exact path="/" component={ApIndex}></Route>
+        <Route exact path="/index" component={ApIndex}></Route>
         <Route  path="/login" component={Login}></Route>
         <Route path="/p/:res" component={ApIndex}></Route>
       </Switch>

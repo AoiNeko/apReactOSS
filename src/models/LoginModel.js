@@ -14,7 +14,7 @@ export default class LoginModel {
   @action
   verify(values) {
     console.log(values)
-    this.isLoginErr = false
-    return true
+    this.isLoginErr = true
+    return false
   }
 }

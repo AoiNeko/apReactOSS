@@ -18,13 +18,15 @@ class Login extends Component {
         this.props.form.validateFields((err, values) => {
             if (!err) {
                 console.log('Received values of form: ', values);
-                let isUser = loginModel.verify(values)
-                if (isUser) {
-                    this.props.history.push("/")
-                }
-                else {
-
-                }
+                let userName = values.userName
+                let password = values.password
+                let form = document.createElement("form")
+                form.action = "/login"
+                form.method = "post"
+                form.innerHTML = "<input name=\"username\" value=\"" + userName + "\"  />"
+                    + "<input name=\"password\" value=\"" + password + "\"  />"
+                document.getElementById("root").appendChild(form)
+                form.submit()
             }
         });
     }
