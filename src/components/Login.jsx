@@ -21,7 +21,7 @@ class Login extends Component {
                 let userName = values.userName
                 let password = values.password
                 let form = document.createElement("form")
-                form.action = "/login"
+                form.action = "/paycenter/login"
                 form.method = "post"
                 form.innerHTML = "<input name=\"username\" value=\"" + userName + "\"  />"
                     + "<input name=\"password\" value=\"" + password + "\"  />"

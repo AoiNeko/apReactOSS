@@ -2,18 +2,17 @@ import { observable, computed, action } from "mobx";
 import RequestTool from "./RequestTool"
 
 function addMenuToList(menu, menuList, data) {
-    debugger
-    if (menu.level == 1) {
+    if (menu.level == 0) {
         menuList.push(menu)
     }
     else {
-        let parentMenu = getMenuById(menuList, menu.parent)
+        let parentMenu = getMenuById(menuList, menu.parentId)
         if (parentMenu) {
             parentMenu.children = (parentMenu.children)? parent.children.concat(menu) : [].concat(menu)
         }
         else {
             data.forEach(function (serverMenu) {
-                if (serverMenu.id == menu.parent) {
+                if (serverMenu.id == menu.parentId) {
                     addMenuToList(serverMenu, menuList, data)
                 }
             }, this);
@@ -49,7 +48,7 @@ class ApIndexModel {
     @action
     getMenu() {
         let param = {
-            "url": "/user/sys/res",
+            "url": "/paycenter/user/sys/res",
             "success": this.composeMenu.bind(this)
         }
 
@@ -62,7 +61,7 @@ class ApIndexModel {
     @action
     composeMenu(data) {
         console.log(data)
-
+       
         if (data.length > 0) {
             let menuList = []
             for (let index = 0; index < data.length; index++) {

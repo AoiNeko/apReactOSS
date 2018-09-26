@@ -23,7 +23,7 @@ class ApIndex extends Component {
   handleClick(e) {
     console.log(e)
     let {res} = e.item.props
-    this.props.history.push("/p/" + res)
+    this.props.history.push("/paycenter/p/" + res)
   }
 
 
@@ -48,7 +48,7 @@ class ApIndex extends Component {
                   return (<SubMenu key={menu.id} res={menu.resource} title={<span><Icon type="mail" /><span>{menu.name}</span></span>}>
                     {
                       menu.children ? menu.children.map((subMenu) =>
-                        <Menu.Item key={subMenu.id} res={subMenu.resource}>{subMenu.name}</Menu.Item>
+                        <Menu.Item key={subMenu.id} res={subMenu.resUrl}>{subMenu.name}</Menu.Item>
                       ) : ""
                     }
 

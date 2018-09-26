@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { observer } from "mobx-react";
 import { Menu, Icon, Layout } from 'antd';
 import PayToolMgt from './service/PayToolMgt'
+import RefundAuditing from './service/RefundAuditing'
 import AoCalendar from './AoCalendar'
 import DayPage from './DayPage'
 const { Header, Content } = Layout;
@@ -31,13 +32,16 @@ class Page extends Component {
         }
         //日历
         else if (res == "cal") {
-            return (<AoCalendar history={this.props.history}/>)
+            return (<AoCalendar history={this.props.history} />)
         }
         else if (res == "day") {
             return (<DayPage history={this.props.history} />)
         }
+        else if (res == "refund") {
+            return (<RefundAuditing history={this.props.history} />)
+        }
         else {
-            return (<PayToolMgt history={this.props.history}/>)
+            return (<PayToolMgt history={this.props.history} />)
         }
     }
 

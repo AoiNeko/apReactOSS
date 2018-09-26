@@ -1,42 +1,56 @@
 import React, { Component } from "react";
 import { observer } from "mobx-react";
 import { Row, Col, Input, Select, Button,Table } from 'antd';
+import RefundAuditingModel from '../../models/service/RefundAuditingModel'
 const Option = Select.Option;
 
-const dataSource = [{
-  key: '1',
-  name: '胡彦斌',
-  age: 32,
-  address: '西湖区湖底公园1号'
-}, {
-  key: '2',
-  name: '胡彦祖',
-  age: 42,
-  address: '西湖区湖底公园1号'
-}];
+const store = new RefundAuditingModel();
 
 const columns = [{
-  title: '姓名',
-  dataIndex: 'name',
-  key: 'name',
+  title: '车牌号',
+  dataIndex: 'carNo',
+  key: 'carNo',
 }, {
-  title: '年龄',
-  dataIndex: 'age',
-  key: 'age',
+  title: '订单号',
+  dataIndex: 'tradeNo',
+  key: 'tradeNo',
 }, { 
-  title: '住址',
-  dataIndex: 'address',
-  key: 'address',
+  title: '进场时间',
+  dataIndex: 'enterTime',
+  key: 'enterTime',
+}, { 
+  title: '出场时间',
+  dataIndex: 'leaveTime',
+  key: 'leaveTime',
+}, { 
+  title: '申请时间',
+  dataIndex: 'applyTime',
+  key: 'applyTime',
+}, { 
+  title: '申请人',
+  dataIndex: 'apply',
+  key: 'apply',
+}, { 
+  title: '退费金额',
+  dataIndex: 'amount',
+  key: 'amount',
+}, {
+  title: '状态',
+  dataIndex: 'status',
+  key: 'status',
+},{
+    title:'',
+    dataIndex: 'operation',
+    key: 'operation',
 }];
 
 
 
 
 @observer
-class PayToolMgt extends Component {
+class RefundAuditing extends Component {
     componentWillMount() {
-        
-        
+         store.getRefundData()
     }
     render() {
         return (<div>
@@ -66,10 +80,10 @@ class PayToolMgt extends Component {
                 </Col>
             </Row>
             
-            <Table dataSource={dataSource} columns={columns} />
+            <Table dataSource={store.dataSource} columns={columns} />
             
         </div>)
     }
 }
 
-export default PayToolMgt
+export default RefundAuditing
