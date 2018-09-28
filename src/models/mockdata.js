@@ -114,7 +114,103 @@ Mock.mock(/\list/, {
 
 
 Mock.mock(/\user/,
-    [{ "createdDate": 1537933886000, "updatedDate": 1537933882000, "createdBy": "superadmin", "updatedBy": "superadmin", "isDeleted": false, "id": 411, "name": "退费管理", "parentId": null, "resKey": null, "resUrl": "refundIndex", "level": 0, "icon": null, "isHidden": false, "seq": 1, "description": "支付中心退费管理", "roles": null, "subRes": null, "action": null }, { "createdDate": 1537933957000, "updatedDate": 1537933960000, "createdBy": "superadmin", "updatedBy": "superadmin", "isDeleted": false, "id": 412, "name": "退费审核", "parentId": 411, "resKey": "refund", "resUrl": "refund", "level": 1, "icon": null, "isHidden": false, "seq": 1, "description": "退费审核", "roles": null, "subRes": null, "action": "refund" }]
+    [{
+  "createdDate": 1537933886000,
+  "updatedDate": 1537933882000,
+  "createdBy": "superadmin",
+  "updatedBy": "superadmin",
+  "isDeleted": false,
+  "id": 411,
+  "name": "退费管理",
+  "parentId": null,
+  "resKey": null,
+  "resUrl": "refundIndex",
+  "level": 0,
+  "icon": null,
+  "isHidden": false,
+  "seq": 1,
+  "description": "支付中心退费管理",
+  "roles": null,
+  "subRes": null,
+  "action": null
+}, {
+  "createdDate": 1537933957000,
+  "updatedDate": 1537933960000,
+  "createdBy": "superadmin",
+  "updatedBy": "superadmin",
+  "isDeleted": false,
+  "id": 412,
+  "name": "退费审核",
+  "parentId": 411,
+  "resKey": "refund",
+  "resUrl": "refund",
+  "level": 1,
+  "icon": null,
+  "isHidden": false,
+  "seq": 1,
+  "description": "退费审核",
+  "roles": null,
+  "subRes": null,
+  "action": "refund"
+}, {
+
+  "id": 413,
+  "name": "支付管理",
+  "parentId": null,
+  "resKey": "paymgt",
+  "resUrl": "paymgt",
+  "level": 0,
+  "icon": null,
+  "isHidden": false,
+  "seq": 1,
+  "description": "支付管理",
+  "roles": null,
+  "subRes": null
+}, {
+
+  "id": 414,
+  "name": "支付工具管理",
+  "parentId": 413,
+  "resKey": "payTool",
+  "resUrl": "payTool",
+  "level": 1,
+  "icon": null,
+  "isHidden": false,
+  "seq": 1,
+  "description": "支付工具管理",
+  "roles": null,
+  "subRes": null
+}
+, {
+
+  "id": 415,
+  "name": "业务管理",
+  "parentId": 413,
+  "resKey": "bussinessMgt",
+  "resUrl": "bussinessMgt",
+  "level": 1,
+  "icon": null,
+  "isHidden": false,
+  "seq": 1,
+  "description": "业务管理",
+  "roles": null,
+  "subRes": null
+}
+, {
+
+  "id": 416,
+  "name": "支付工具配置",
+  "parentId": 413,
+  "resKey": "payToolConf",
+  "resUrl": "payToolConf",
+  "level": 1,
+  "icon": null,
+  "isHidden": false,
+  "seq": 1,
+  "description": "支付工具配置",
+  "roles": null,
+  "subRes": null
+}]
 )
 
 
