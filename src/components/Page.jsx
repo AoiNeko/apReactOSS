@@ -4,6 +4,7 @@ import { Menu, Icon, Layout } from 'antd';
 import PayToolMgt from './service/PayToolMgt'
 import RefundAuditing from './service/RefundAuditing'
 import PaymentTool from './service/PaymentTool'
+import BussinessMgt from './service/BussinessMgt'
 import AoCalendar from './AoCalendar'
 import DayPage from './DayPage'
 const { Header, Content } = Layout;
@@ -43,6 +44,9 @@ class Page extends Component {
         }
         else if (res == "payTool") {
             return (<PaymentTool history={this.props.history} />)
+        }
+        else if (res == "bussinessMgt") {
+            return (<BussinessMgt history={this.props.history} />)
         }
         else {
             return (<PayToolMgt history={this.props.history} />)

@@ -74,15 +74,14 @@ export default class RefundAuditingModel {
     }];
 
     @action
-    getRefundData(values) {
+    getRefundData(current, pageSize) {
         this.loading = true
-        let page = values ? values.current + 1 : 1
-        let size = 10
+        let page = current ? current : 1
+        let size = pageSize ? pageSize : 10
         let param = {
             "url": "/paycenter/refund/list?page=" + page + "&size=" + size,
             "success": this.dataFetch.bind(this)
         }
-
         let request = new RequestTool()
         request.commonFetch(param)
 

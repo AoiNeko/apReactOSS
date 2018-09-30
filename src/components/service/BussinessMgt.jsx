@@ -10,7 +10,7 @@ const store = new PaymentToolModel()
 
 
 @observer
-class PaymentTool extends Component {
+class BussinessMgt extends Component {
     componentWillMount() { 
         store.getPaymentToolData()
     }
@@ -30,7 +30,7 @@ class PaymentTool extends Component {
                     </Select>
                 </Col>
 
-                <Col span={1} style={{ "display": "flex", "justifyContent": "center", margin: "1vh" }}>s
+                <Col span={1} style={{ "display": "flex", "justifyContent": "center", margin: "1vh" }}>
                     <Button type="primary">查询</Button>
                 </Col>
                 <Col span={1} style={{ "display": "flex", "justifyContent": "center", margin: "1vh" }}>
@@ -54,4 +54,4 @@ class PaymentTool extends Component {
     }
 }
 
-export default PaymentTool
+export default BussinessMgt
