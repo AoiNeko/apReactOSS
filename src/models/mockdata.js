@@ -284,14 +284,14 @@ Mock.mock(/\paymentTool\/get/, {
             createdDate: "2018-09-30",
             desc: "共享停车用户余额"
         }
-        , {
+            , {
             type: "自有",
             id: "3",
             name: "微信",
             createdDate: "2018-09-30",
             desc: "微信支付"
         }
-        , {
+            , {
             type: "自有",
             id: "4",
             name: "支付宝",
@@ -304,10 +304,111 @@ Mock.mock(/\paymentTool\/get/, {
             createdDate: "2018-09-30",
             desc: ""
         }],
-        total:5,
+        total: 5,
         page: 1
 
     }
 })
 
 
+Mock.mock(/ussinessMgt\/get/, {
+    code: 200,
+    result: {
+        list: [{
+            payscene: "微信端临停支付",
+            id: "1",
+            code: "1",
+            createdDate: "2018-09-30",
+            desc: "微信端临停支付"
+        }, {
+            payscene: "app临停支付",
+            id: "2",
+            code: "1",
+            createdDate: "2018-09-30",
+            desc: "app临停支付"
+        }
+            , {
+            payscene: "微信端月保支付",
+            id: "3",
+            code: "1",
+            createdDate: "2018-09-30",
+            desc: "微信端月保支付"
+        }
+            , {
+            payscene: "app月保支付",
+            id: "4",
+            code: "1",
+            createdDate: "2018-09-30",
+            desc: "app月保支付"
+        }, {
+            payscene: "",
+            id: "5",
+            code: "1",
+            createdDate: "2018-09-30",
+            desc: ""
+        }],
+        total: 5,
+        page: 1
+
+    }
+})
+
+Mock.mock(/payeeConfig\/get/, {
+    code: 200,
+    result: {
+        list: [{
+            id: "1",
+            payee: "1",
+            paymentTool: "1",
+            business: "1",
+            desc: "公众号微信支付临停订单 "
+        }, {
+
+            id: "2",
+            payee: "1",
+            paymentTool: "1",
+            business: "2",
+            desc: "app微信支付临停订单"
+        }
+            , {
+
+            id: "3",
+            payee: "1",
+            paymentTool: "1",
+            business: "3",
+            desc: "小程序车牌支付临停订单"
+        }
+            , {
+
+            id: "4",
+            payee: "1",
+            paymentTool: "1",
+            business: "4",
+            desc: "停车码小程序支付临停订单"
+        }, {
+            id: "5",
+            payee: "1",
+            paymentTool: "2",
+            business: "1",
+            desc: "pp支付宝支付临停订单"
+        }],
+        total: 5,
+        page: 1
+
+    }
+})
+
+Mock.mock(/parkPaymentConfig\/get/, {
+    code: 200,
+    result: {
+        list: [{
+            id: "1",
+            parkName: "poly park",
+            business: "1",
+            desc: "公众号微信支付临停订单 "
+        }],
+        total: 1,
+        page: 1
+
+    }
+})

@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import { observer } from "mobx-react";
 import { Menu, Icon, Layout } from 'antd';
-import PayToolMgt from './service/PayToolMgt'
 import RefundAuditing from './service/RefundAuditing'
 import PaymentTool from './service/PaymentTool'
 import BussinessMgt from './service/BussinessMgt'
+import PayeeConfig from './service/PayeeConfig'
+import ParkPaymentConfig from './service/ParkPaymentConfig'
 import AoCalendar from './AoCalendar'
 import DayPage from './DayPage'
 const { Header, Content } = Layout;
@@ -48,15 +49,18 @@ class Page extends Component {
         else if (res == "bussinessMgt") {
             return (<BussinessMgt history={this.props.history} />)
         }
+        else if (res == "payeeConf") {
+            return (<PayeeConfig history={this.props.history} />)
+        }
+        else if (res == "payToolConf") {
+            return (<ParkPaymentConfig history={this.props.history} />)
+        }
         else {
-            return (<PayToolMgt history={this.props.history} />)
+            return (<div>路径未配置</div>)
         }
     }
 
     render() {
-        console.log(PayToolMgt)
-
-
         return (<Layout>
             <Header style={{ backgroundColor: "white" }}><div>支付工具配置</div></Header>
             <Content>

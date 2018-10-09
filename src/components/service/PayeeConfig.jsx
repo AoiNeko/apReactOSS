@@ -2,17 +2,17 @@ import React, { Component } from "react";
 import { observer } from "mobx-react";
 import { action } from "mobx";
 import { Row, Col, Input, Select, Button, Table } from 'antd';
-import BusinessMgtModel from '../../models/service/BusinessMgtModel'
+import PayeeConfigModel from '../../models/service/PayeeConfigModel'
 const Option = Select.Option;
 
-const store = new BusinessMgtModel()
+const store = new PayeeConfigModel()
 
 
 
 @observer
-class BussinessMgt extends Component {
+class PayeeConfig extends Component {
     componentWillMount() { 
-        store.getBusinessData()
+        store.getPayeeData()
     }
     render() {
         return (<div>
@@ -50,8 +50,8 @@ class BussinessMgt extends Component {
 
     @action
     handleTableChange = (pagination, filters, sorter) => {
-        store.getPaymentToolData(pagination)
+        store.getPayeeData(pagination)
     }
 }
 
-export default BussinessMgt
+export default PayeeConfig
