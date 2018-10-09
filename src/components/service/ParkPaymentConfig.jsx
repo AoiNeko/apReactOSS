@@ -2,7 +2,10 @@ import React, { Component } from "react";
 import { observer } from "mobx-react";
 import { action } from "mobx";
 import { Row, Col, Input, Select, Button, Table, Modal } from 'antd';
-import ParkPaymentConfigModel from '../../models/service/ParkPaymentConfigModel'
+import ParkPaymentConfigModel from '../../models/service/ParkPaymentConfigModel';
+import ParkPaymentConfigDetail from './payment/ParkPaymentConfigDetail';
+
+
 const Option = Select.Option;
 
 const store = new ParkPaymentConfigModel()
@@ -57,7 +60,7 @@ class ParkPaymentConfig extends Component {
                 onCancel={() => store.configCancel()}
                 width='90%'
             >
-                config 
+                <ParkPaymentConfigDetail /> 
             </Modal>
 
         </div>)

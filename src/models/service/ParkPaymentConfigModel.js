@@ -30,7 +30,7 @@ export default class ParkPaymentConfigModel {
     }
 
     @action
-    generalConfig() { 
+    generalConfig() {
         this.modalVisible = true
     }
 
@@ -38,7 +38,10 @@ export default class ParkPaymentConfigModel {
     dataFetch(data) {
         this.loading = false
         this.dataSource = data.result.list
-        this.pagination.total = data.result.total
+        if (this.pagination) {
+            this.pagination.total = data.result.total
+        }
+
     }
 
     @action

@@ -340,14 +340,8 @@ Mock.mock(/ussinessMgt\/get/, {
             code: "1",
             createdDate: "2018-09-30",
             desc: "app月保支付"
-        }, {
-            payscene: "",
-            id: "5",
-            code: "1",
-            createdDate: "2018-09-30",
-            desc: ""
         }],
-        total: 5,
+        total: 4,
         page: 1
 
     }
@@ -411,4 +405,42 @@ Mock.mock(/parkPaymentConfig\/get/, {
         page: 1
 
     }
+})
+
+Mock.mock(/parkPaymentConfig\/detail/, {
+    code: 200,
+    result:
+    [
+        {
+            payType: 1,
+            payScene: "1",
+            payee: "1",
+            cooperator: ""
+        },
+        {
+            payType: 2,
+            payScene: "1",
+            payee: "1",
+            cooperator: ""
+        },
+        {
+            payType: 3,
+            payScene: "1",
+            payee: "1",
+            cooperator: ""
+        },
+        {
+            payType: 1,
+            payScene: "2",
+            payee: "1",
+            cooperator: ""
+        },
+        {
+            payType: 1,
+            payScene: "2",
+            payee: "1",
+            cooperator: ""
+        }
+    ]
+
 })
