@@ -13,6 +13,7 @@ const store = new ParkPaymentConfigDetailModel()
 class ParkPaymentConfigDetail extends Component {
     componentWillMount() {
         store.getBusinessData()
+        
     }
     render() {
         return (<List dataSource={store.dataSource}

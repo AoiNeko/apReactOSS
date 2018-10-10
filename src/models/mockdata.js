@@ -272,33 +272,33 @@ Mock.mock(/\paymentTool\/get/, {
     code: 200,
     result: {
         list: [{
-            type: "自有",
+            type: "1",
             id: "1",
             name: "金币",
             createdDate: "2018-09-30",
             desc: "共享停车金币"
         }, {
-            type: "自有",
+            type: "1",
             id: "2",
             name: "余额",
             createdDate: "2018-09-30",
             desc: "共享停车用户余额"
         }
             , {
-            type: "自有",
+            type: "2",
             id: "3",
             name: "微信",
             createdDate: "2018-09-30",
             desc: "微信支付"
         }
             , {
-            type: "自有",
+            type: "2",
             id: "4",
             name: "支付宝",
             createdDate: "2018-09-30",
             desc: "支付宝支付"
         }, {
-            type: "自有",
+            type: "2",
             id: "5",
             name: "网付通",
             createdDate: "2018-09-30",
@@ -436,7 +436,7 @@ Mock.mock(/parkPaymentConfig\/detail/, {
             cooperator: ""
         },
         {
-            payType: 1,
+            payType: 2,
             payScene: "2",
             payee: "1",
             cooperator: ""

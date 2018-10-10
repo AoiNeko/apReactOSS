@@ -6,6 +6,8 @@ export default class ParkPaymentConfigDetailModel {
     @observable
     dataSource = []
     @observable
+    paymentTools = []
+    @observable
     loading = false
 
     @observable
@@ -14,6 +16,9 @@ export default class ParkPaymentConfigDetailModel {
     parkId = null
     @observable
     paySceneMap = {}
+    @observable
+    payTypeArr = []
+
     @action
     getBusinessData(values) {
         this.loading = true
@@ -23,14 +28,33 @@ export default class ParkPaymentConfigDetailModel {
             "url": "/paycenter/bussinessMgt/get?page=" + page + "&size=" + size,
             "success": this.dataFetch.bind(this)
         }
+        let request = new RequestTool()
+        request.commonFetch(param)
+        this.getPaymentToolsData()
+    }
+
+    @action
+    getPaymentToolsData(values) {
+        this.loading = true
+        let param = {
+            "url": "/paycenter/paymentTool/get",
+            "success": this.paymentToolsFetch.bind(this)
+        }
 
         let request = new RequestTool()
         request.commonFetch(param)
     }
 
     @action
+    paymentToolsFetch(data) {
+        this.loading = false
+
+        this.paymentTools = data.result.list;
+
+    }
+
+    @action
     dataFetch(data) {
-        debugger
         this.dataSource = data.result.list
         if (this.pagination) {
             this.pagination.total = data.result.total
@@ -45,18 +69,33 @@ export default class ParkPaymentConfigDetailModel {
         }
         let request = new RequestTool()
         request.commonFetch(param)
-
     }
 
     @action
     parkPaymentConfigGet(data) {
         this.parkConfig = data.result
+        this.preConfig()
     }
 
     @action
-    setCheckedMap(sceneId, isChecked) {
-        alert(sceneId  + "  "  + isChecked)
-        this.paySceneMap[sceneId] = isChecked
+    setPaySceneModel(sceneId, model) {
+        this.paySceneMap[sceneId] = model
+    }
+
+    getPaySceneModel(sceneId) {
+        return this.paySceneMap[sceneId] 
+    }
+
+    @action
+    preConfig() {
+        for (var index = 0; index < this.parkConfig.length; index++) {
+            var element = this.parkConfig[index];
+            let model = this.paySceneMap[element.payScene]
+            if (model) {
+                model.setChecked(true)
+                model.addPayType(element.payType)
+            }
+        }
     }
 
 }
