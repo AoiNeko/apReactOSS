@@ -93,7 +93,7 @@ export default class ParkPaymentConfigDetailModel {
             let model = this.paySceneMap[element.payScene]
             if (model) {
                 model.setChecked(true)
-                model.addPayType(element.payType)
+                model.addPayType(element.payType, {key: element.payee, text: element.payeeDesc})
             }
         }
     }

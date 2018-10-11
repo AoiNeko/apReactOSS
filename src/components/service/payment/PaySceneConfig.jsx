@@ -26,7 +26,6 @@ class PaySceneConfig extends Component {
         let { payScene } = this.props
         const { store } = this.props
         let model = store.paySceneMap[payScene.id]
-
         return (<div style={{ "width": "100%", "padding": "2px" }}>
             <Row>
                 <Col span={6}>

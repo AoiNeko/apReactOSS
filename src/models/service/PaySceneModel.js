@@ -16,6 +16,8 @@ export default class PaySceneModel {
     payTypeArr = []
     @observable
     payTypeMap = {}
+    @observable
+    payeeMap = {}
 
     @action
     setChecked(isChecked) {
@@ -28,10 +30,16 @@ export default class PaySceneModel {
     }
 
     @action
-    addPayType(payType) {
+    addPayType(payType, payee) {
         this.payTypeArr.push(payType)
+        this.payeeMap[payType] = payee
     }
 
+    /**
+     * 
+     * @param {*} id 
+     * @param {PayTypeModel} model 
+     */
     @action
     setPayTypeMap(id, model) {
         this.payTypeMap[id] = model

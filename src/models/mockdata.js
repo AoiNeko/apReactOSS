@@ -415,32 +415,48 @@ Mock.mock(/parkPaymentConfig\/detail/, {
             payType: 1,
             payScene: "1",
             payee: "1",
+            payeeDesc: "悦停",
             cooperator: ""
         },
         {
             payType: 2,
             payScene: "1",
             payee: "1",
+            payeeDesc: "悦停",
             cooperator: ""
         },
         {
             payType: 3,
             payScene: "1",
             payee: "1",
+            payeeDesc: "悦停",
             cooperator: ""
         },
         {
             payType: 1,
             payScene: "2",
             payee: "1",
+            payeeDesc: "悦停",
             cooperator: ""
         },
         {
             payType: 2,
             payScene: "2",
             payee: "1",
+            payeeDesc: "悦停",
             cooperator: ""
         }
     ]
 
+})
+
+
+Mock.mock(/payee\/search/, {
+    code: 200,
+    result: {
+        list: [{id: 1, desc: "悦停"}, 
+        {id: 2, desc: "保利"}
+        ]
+    }
+    
 })
