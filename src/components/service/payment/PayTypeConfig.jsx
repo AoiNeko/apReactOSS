@@ -21,6 +21,9 @@ class PayTypeConfig extends Component {
 
             let payee = payscenceModel.payeeMap[payType.id]
             typeModel.setPayee(payee)
+            typeModel.setPaysceneId(paySceneId)
+            typeModel.setPayType(payType.id)
+            typeModel.fetchPayeeConfigJson()
         }
     }
     render() {
@@ -84,12 +87,12 @@ class PayTypeConfig extends Component {
             <div>
                 <Row>
                     <Col span={12}>
-                        <TextArea autosize placeholder="填写收款人的JSON格式的信息对" onChange={(value)=> typeModel.setPayeeConfigJson(value)}></TextArea>
+                        <TextArea autosize placeholder="填写收款人的JSON格式的信息对" value={typeModel.payeeConfigJson} onChange={(value)=> typeModel.setPayeeConfigJson(value)}></TextArea>
                     </Col>
                 </Row>
                 <Row>
                     <Col span={12}>
-                        <Input placeholder="填写备注" onChange={(value)=> typeModel.setPayeeDesc(value)}></Input>
+                        <Input placeholder="填写备注" value={typeModel.payeeConfigDesc}  onChange={(value)=> typeModel.setPayeeDesc(value)}></Input>
                     </Col>
                 </Row>
             </div>

@@ -60,7 +60,7 @@ class ParkPaymentConfig extends Component {
                 onCancel={() => store.configCancel()}
                 width='90%'
             >
-                <ParkPaymentConfigDetail /> 
+                <ParkPaymentConfigDetail parkStore={store}/> 
             </Modal>
 
         </div>)

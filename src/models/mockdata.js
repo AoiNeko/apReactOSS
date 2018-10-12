@@ -460,3 +460,14 @@ Mock.mock(/payee\/search/, {
     }
     
 })
+
+Mock.mock(/payee\/config/, {
+    code: 200,
+    result: {
+        configJson : "{\"a\":\"b\"}",
+        desc: "我顶顶顶",
+        payScene:"1",
+        payType: "3"
+    }
+    
+})

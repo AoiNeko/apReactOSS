@@ -13,6 +13,8 @@ export default class ParkPaymentConfigModel {
     comfirmLoading = false
     @observable
     modalTitle = '通用支付配置'
+    @observable
+    detailStore = {}
 
     @action
     getParkPaymengConfigData(values) {
@@ -45,7 +47,44 @@ export default class ParkPaymentConfigModel {
     }
 
     @action
+    setDetailStore(store) {
+        this.detailStore = store
+    }
+
+    @action
     configOk() {
+        let parkPaymentArray = []
+        let payeeConfigArray = []
+        for (var sceneId in  this.detailStore.paySceneMap) {
+            if ( this.detailStore.paySceneMap.hasOwnProperty(sceneId)) {
+                var sceneModel =  this.detailStore.paySceneMap[sceneId];
+                if (sceneModel.isChecked) {
+                    for (var typeId in sceneModel.payTypeMap) {
+                        if (sceneModel.payTypeMap.hasOwnProperty(typeId)) {
+                            var typeModel = sceneModel.payTypeMap[typeId];
+                            if (typeModel.isChecked) {
+                                let paymentObj = {
+                                    "sceneId": sceneId,
+                                    "typeId": typeId,
+                                    "payee": typeModel.payeeSelect[0].key
+                                }
+
+                                let payeeConfigObj =  {
+                                    "sceneId": sceneId,
+                                    "typeId": typeId,
+                                    "configJson": typeModel.payeeConfigJson,
+                                    "desc": typeModel.payeeConfigDesc 
+                                }
+                                parkPaymentArray.push(paymentObj)
+                                payeeConfigArray.push(payeeConfigObj)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+            debugger
+
         this.modalVisible = false
     }
 
