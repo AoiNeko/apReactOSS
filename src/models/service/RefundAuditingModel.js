@@ -90,14 +90,14 @@ export default class RefundAuditingModel {
     @action
     dataFetch(data) {
         this.loading = false
-        this.dataSource = data.data;
+        this.dataSource = data.result.list;
         this.pagination.total = data.total
     }
 
     @action
     handleDetail(record) {
         console.log("row is ", record)
-        this.auditingTradeNo = record.tradeNo
+        this.auditingTradeNo = record.refundNo
         this.modalVisible = true
     }
 
@@ -115,7 +115,7 @@ export default class RefundAuditingModel {
     getOrderRefundInfo() {
         this.refundLoading = true
         let param = {
-            "url": "/paycenter/refund/order?tradeNo=" + this.auditingTradeNo,
+            "url": "/paycenter/refund/order?refundNo=" + this.auditingTradeNo,
             "success": this.orderRefundInfoData.bind(this)
         }
 

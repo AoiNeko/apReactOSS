@@ -2,114 +2,7 @@ import Mock from 'mockjs'
 
 Mock.setup({ timeout: "200-1000" })
 
-Mock.mock(/\list/, {
-    page: 1,
-    total: 100,
-    hasNext: 1,
-    size: 10,
-    data: [{
-        carNo: "测123455",
-        tradeNo: "201812643187246713851231",
-        enterTime: "1537957089301",
-        leaveTime: "1537957089301",
-        applyTime: "1537957089301",
-        apply: "oas",
-        amount: "500",
-        status: "1",
-        operation: "阿萨"
-    }, {
-        carNo: "测123455",
-        tradeNo: "201812643187246713851231",
-        enterTime: "1537957089301",
-        leaveTime: "1537957089301",
-        applyTime: "1537957089301",
-        apply: "oas",
-        amount: "500",
-        status: "1",
-        operation: "阿萨"
-    }, {
-        carNo: "测123455",
-        tradeNo: "201812643187246713851231",
-        enterTime: "1537957089301",
-        leaveTime: "1537957089301",
-        applyTime: "1537957089301",
-        apply: "oas",
-        amount: "500",
-        status: "1",
-        operation: "阿萨"
-    }, {
-        carNo: "测123455",
-        tradeNo: "201812643187246713851231",
-        enterTime: "1537957089301",
-        leaveTime: "1537957089301",
-        applyTime: "1537957089301",
-        apply: "oas",
-        amount: "500",
-        status: "1",
-        operation: "阿萨"
-    }, {
-        carNo: "测123455",
-        tradeNo: "201812643187246713851231",
-        enterTime: "1537957089301",
-        leaveTime: "1537957089301",
-        applyTime: "1537957089301",
-        apply: "oas",
-        amount: "500",
-        status: "1",
-        operation: "阿萨"
-    }, {
-        carNo: "测123455",
-        tradeNo: "201812643187246713851231",
-        enterTime: "1537957089301",
-        leaveTime: "1537957089301",
-        applyTime: "1537957089301",
-        apply: "oas",
-        amount: "500",
-        status: "1",
-        operation: "阿萨"
-    }, {
-        carNo: "测123455",
-        tradeNo: "201812643187246713851231",
-        enterTime: "1537957089301",
-        leaveTime: "1537957089301",
-        applyTime: "1537957089301",
-        apply: "oas",
-        amount: "500",
-        status: "1",
-        operation: "阿萨"
-    }, {
-        carNo: "测123455",
-        tradeNo: "201812643187246713851231",
-        enterTime: "1537957089301",
-        leaveTime: "1537957089301",
-        applyTime: "1537957089301",
-        apply: "oas",
-        amount: "500",
-        status: "1",
-        operation: "阿萨"
-    }, {
-        carNo: "测123455",
-        tradeNo: "201812643187246713851231",
-        enterTime: "1537957089301",
-        leaveTime: "1537957089301",
-        applyTime: "1537957089301",
-        apply: "oas",
-        amount: "500",
-        status: "1",
-        operation: "阿萨"
-    }, {
-        carNo: "测123455",
-        tradeNo: "201812643187246713851231",
-        enterTime: "1537957089301",
-        leaveTime: "1537957089301",
-        applyTime: "1537957089301",
-        apply: "oas",
-        amount: "500",
-        status: "1",
-        operation: "阿萨"
-    }]
-}
-
+Mock.mock(/\list/, {"code":200,"desc":"success","result":{"pageNum":1,"pageSize":10,"size":1,"startRow":1,"endRow":1,"total":1,"pages":1,"list":[{"refundNo":"asdsajohdhaskjdhska","carNo":"临A00002","tradeNo":null,"enterTime":"2018-10-15 17:06:45","leaveTime":"2018-10-15 17:08:15","applyTime":"2018-10-18 09:40:19","apply":"asd","amount":1,"status":null}],"prePage":0,"nextPage":0,"isFirstPage":true,"isLastPage":true,"hasPreviousPage":false,"hasNextPage":false,"navigatePages":8,"navigatepageNums":[1],"navigateFirstPage":1,"navigateLastPage":1,"firstPage":1,"lastPage":1},"timestamp":1539827803905}
 )
 
 
@@ -230,122 +123,13 @@ Mock.mock(/\user/,
 
 
 Mock.mock(/\order/,
-    {
-        result: {
-            refund: {
-                refundAmount: 2200,
-                refundWay: "1",
-                refundDesc: "该用户重复付费20元，已核实",
-                imgUrl: "https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png",
-                auditingStatus: 0,
-                auditingDesc: "yeah"
-            },
-            order: {
-                tradeNo: 1231241,
-                parkName: "万达停车场",
-                enterTime: 12314155556,
-                parkingTime: "两小时12分",
-                applyTime: 102471985471894,
-                apply: "wxy",
-                coupon: "1小时优惠券",
-                paidAmount: 12.00
-            },
-            payments: [{
-                type: 1,
-                id: "1",
-                paymentDate: 1215135151,
-                amount: 6.00,
-                outTradeNo: 128941841541
-            },
-            {
-                type: 1,
-                id: "1",
-                paymentDate: 1215135151,
-                amount: 6.00,
-                outTradeNo: '128941841541'
-            }]
-        }
-    }
+   {"code":200,"desc":"success","result":{"refund":{"refundNo":"asdsajohdhaskjdhska","carNo":"临A00002","tradeNo":"201810151706448110002805","enterTime":"2018-10-15 17:06:45","leaveTime":"2018-10-15 17:08:15","applyTime":"2018-10-18 09:40:19","apply":"asd","parkName":"万达地下车场","amount":1,"status":1,"auditDesc":"arer","imgUrl":null},"order":{"id":307157,"parkNo":null,"apParkId":326,"tradeNo":"201810151706448110002805","carNo":"临A00002","status":4,"retentionTime":null,"totalAmount":1,"paidAmount":1,"discountAmount":0,"reduceAmount":0,"additions":null,"type":0,"parkingType":0,"paymentType":2,"paymentTime":1539594468000,"paymentWay":16,"enterTime":1539594405000,"leaveTime":1539594495000,"deleted":false,"createdDated":1539594411000,"createdBy":null,"updatedDate":1539594502000,"updatedBy":"phub"},"coupons":null,"payments":[{"id":482,"prepayId":"e6a1dc13f39e467cb3c9cbbdfda8b8a7","outTradeNo":"201810151707470070002734","tradeNo":"201810151706448110002805","prepayInfo":"{\"additionalFee\":0,\"carNo\":\"临A00002\",\"couponCode\":\"\",\"discountFee\":0,\"paidFee\":0,\"totalFee\":1,\"tradeNo\":\"201810151706448110002805\"}","channelId":28,"userId":314232,"payee":1,"wxUnionId":"oNa2guHvdlzJ5uuK_YZ_hgjcLAHA","paymentType":1,"paymentStatus":1,"paymentScene":1,"amount":1,"notifyDate":1539594473000,"createdDate":1539594468000,"createdBy":"appay","updatedDate":1539826368000,"updatedBy":null}]},"timestamp":1539849958892}
 )
 
-Mock.mock(/\paymentTool\/get/, {
-    code: 200,
-    result: {
-        list: [{
-            type: "1",
-            id: "1",
-            name: "金币",
-            createdDate: "2018-09-30",
-            desc: "共享停车金币"
-        }, {
-            type: "1",
-            id: "2",
-            name: "余额",
-            createdDate: "2018-09-30",
-            desc: "共享停车用户余额"
-        }
-            , {
-            type: "2",
-            id: "3",
-            name: "微信",
-            createdDate: "2018-09-30",
-            desc: "微信支付"
-        }
-            , {
-            type: "2",
-            id: "4",
-            name: "支付宝",
-            createdDate: "2018-09-30",
-            desc: "支付宝支付"
-        }, {
-            type: "2",
-            id: "5",
-            name: "网付通",
-            createdDate: "2018-09-30",
-            desc: ""
-        }],
-        total: 5,
-        page: 1
-
-    }
-})
+Mock.mock(/\paymentTool\/get/, {"code":200,"desc":"success","result":{"pageNum":1,"pageSize":10,"size":1,"startRow":1,"endRow":1,"total":1,"pages":1,"list":[{"id":0,"type":1,"name":"微信支付","isDeleted":false,"createdDate":1539854519000,"createdBy":"liangli","updatedDate":1539854522000,"updatedBy":null}],"prePage":0,"nextPage":0,"isFirstPage":true,"isLastPage":true,"hasPreviousPage":false,"hasNextPage":false,"navigatePages":8,"navigatepageNums":[1],"navigateFirstPage":1,"navigateLastPage":1,"lastPage":1,"firstPage":1},"timestamp":1539854713280})
 
 
-Mock.mock(/ussinessMgt\/get/, {
-    code: 200,
-    result: {
-        list: [{
-            payscene: "微信端临停支付",
-            id: "1",
-            code: "1",
-            createdDate: "2018-09-30",
-            desc: "微信端临停支付"
-        }, {
-            payscene: "app临停支付",
-            id: "2",
-            code: "1",
-            createdDate: "2018-09-30",
-            desc: "app临停支付"
-        }
-            , {
-            payscene: "微信端月保支付",
-            id: "3",
-            code: "1",
-            createdDate: "2018-09-30",
-            desc: "微信端月保支付"
-        }
-            , {
-            payscene: "app月保支付",
-            id: "4",
-            code: "1",
-            createdDate: "2018-09-30",
-            desc: "app月保支付"
-        }],
-        total: 4,
-        page: 1
-
-    }
-})
+Mock.mock(/ussinessMgt\/get/, {"code":200,"desc":"success","result":{"total":1,"list":[{"id":1,"scene":1,"name":"小程序临停支付","isDeleted":false,"createdDate":null,"createdBy":null,"updatedDate":1539862654000,"updatedBy":null}],"pageNum":1,"pageSize":10,"size":1,"startRow":1,"endRow":1,"pages":1,"prePage":0,"nextPage":0,"isFirstPage":true,"isLastPage":true,"hasPreviousPage":false,"hasNextPage":false,"navigatePages":8,"navigatepageNums":[1],"navigateFirstPage":1,"navigateLastPage":1},"timestamp":1539863113151})
 
 Mock.mock(/payeeConfig\/get/, {
     code: 200,
@@ -392,74 +176,19 @@ Mock.mock(/payeeConfig\/get/, {
     }
 })
 
-Mock.mock(/parkPaymentConfig\/get/, {
-    code: 200,
-    result: {
-        list: [{
-            id: "1",
-            parkName: "poly park",
-            business: "1",
-            desc: "公众号微信支付临停订单 "
-        }],
-        total: 1,
-        page: 1
-
-    }
-})
+Mock.mock(/parkPaymentConfig\/get/,{"code":200,"desc":"success","result":{"total":1,"list":[{"id":1,"parkId":200,"parkNo":null,"payType":2,"payScene":0,"payee":2,"cooperator":"polyzk","isDeleted":false,"createdDate":null,"createdBy":null,"updatedDate":1539585485000,"updatedBy":null}],"pageNum":1,"pageSize":10,"size":1,"startRow":1,"endRow":1,"pages":1,"prePage":0,"nextPage":0,"isFirstPage":true,"isLastPage":true,"hasPreviousPage":false,"hasNextPage":false,"navigatePages":8,"navigatepageNums":[1],"navigateFirstPage":1,"navigateLastPage":1},"timestamp":1539858487374})
 
 Mock.mock(/parkPaymentConfig\/detail/, {
     code: 200,
     result:
     [
-        {
-            payType: 1,
-            payScene: "1",
-            payee: "1",
-            payeeDesc: "悦停",
-            cooperator: ""
-        },
-        {
-            payType: 2,
-            payScene: "1",
-            payee: "1",
-            payeeDesc: "悦停",
-            cooperator: ""
-        },
-        {
-            payType: 3,
-            payScene: "1",
-            payee: "1",
-            payeeDesc: "悦停",
-            cooperator: ""
-        },
-        {
-            payType: 1,
-            payScene: "2",
-            payee: "1",
-            payeeDesc: "悦停",
-            cooperator: ""
-        },
-        {
-            payType: 2,
-            payScene: "2",
-            payee: "1",
-            payeeDesc: "悦停",
-            cooperator: ""
-        }
+        
     ]
 
 })
 
 
-Mock.mock(/payee\/search/, {
-    code: 200,
-    result: {
-        list: [{id: 1, desc: "悦停"}, 
-        {id: 2, desc: "保利"}
-        ]
-    }
-    
-})
+Mock.mock(/payee\/search/, {"code":200,"desc":"success","result":[{"id":1,"desc":null,"name":"悦停","isDeleted":null,"createdDate":null,"createdBy":null,"updatedDate":null,"updatedBy":null}],"timestamp":1539936076308})
 
 Mock.mock(/payee\/config/, {
     code: 200,

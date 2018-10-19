@@ -29,7 +29,7 @@ class PaySceneConfig extends Component {
         return (<div style={{ "width": "100%", "padding": "2px" }}>
             <Row>
                 <Col span={6}>
-                    <div> {payScene.payscene} </div>
+                    <div> {payScene.name} </div>
                 </Col>
                 <Col span={6}>
                     <Switch checkedChildren="开" unCheckedChildren="关" checked={model.isChecked} onChange={(checked) => { model.setChecked(checked) }} />

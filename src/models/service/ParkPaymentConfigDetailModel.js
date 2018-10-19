@@ -88,6 +88,7 @@ export default class ParkPaymentConfigDetailModel {
 
     @action
     preConfig() {
+
         for (var index = 0; index < this.parkConfig.length; index++) {
             var element = this.parkConfig[index];
             let model = this.paySceneMap[element.payScene]

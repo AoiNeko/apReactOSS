@@ -36,12 +36,12 @@ export default class BusinessMgtModel {
 
     columns = [{
         title: '支付场景',
-        dataIndex: 'payscene',
-        key: 'payscene',
+        dataIndex: 'name',
+        key: 'name',
     }, {
         title: '场景编码',
-        dataIndex: 'code',
-        key: 'code',
+        dataIndex: 'scene',
+        key: 'scene',
     }, {
         title: '创建时间',
         dataIndex: 'createdDate',

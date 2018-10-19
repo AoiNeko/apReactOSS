@@ -29,7 +29,6 @@ export default class PayeeConfigModel {
     dataFetch(data) {
         this.loading = false
         this.dataSource = data.result.list
-        this.pagination.total = data.result.total
     }
 
 
@@ -40,13 +39,17 @@ export default class PayeeConfigModel {
         key: 'payee',
     }, {
         title: '支付工具',
-        dataIndex: 'paymentTool',
-        key: 'paymentTool',
+        dataIndex: 'payType',
+        key: 'payScene',
     }, {
         title: '业务场景',
-        dataIndex: 'business',
-        key: 'business',
-    }, {
+        dataIndex: 'payScene',
+        key: 'payScene',
+    },{
+        title: '支付配置',
+        dataIndex: 'configJson',
+        key: 'configJson',
+    },{
         title: '备注',
         dataIndex: 'desc',
         key: 'desc',

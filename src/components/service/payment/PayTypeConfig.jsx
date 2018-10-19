@@ -14,15 +14,16 @@ class PayTypeConfig extends Component {
         const { paySceneId } = this.props
         let typeModel = new PayTypeModel()
         let payscenceModel = store.getPaySceneModel(paySceneId)
-        payscenceModel.setPayTypeMap(payType.id, typeModel)
+        debugger
+        payscenceModel.setPayTypeMap(payType.type, typeModel)
 
-        if (payscenceModel.hasType(payType.id)) {
+        if (payscenceModel.hasType(payType.type)) {
             typeModel.setChecked(true)
 
-            let payee = payscenceModel.payeeMap[payType.id]
+            let payee = payscenceModel.payeeMap[payType.type]
             typeModel.setPayee(payee)
             typeModel.setPaysceneId(paySceneId)
-            typeModel.setPayType(payType.id)
+            typeModel.setPayType(payType.type)
             typeModel.fetchPayeeConfigJson()
         }
     }
@@ -31,7 +32,7 @@ class PayTypeConfig extends Component {
         const { store } = this.props
         const { paySceneId } = this.props
         let payscenceModel = store.getPaySceneModel(paySceneId)
-        let typeModel = payscenceModel.getPayTypeMap(payType.id)
+        let typeModel = payscenceModel.getPayTypeMap(payType.type)
         return (<div style={{ "width": "100%", "padding": "2px" }}>
             <Row>
                 <Col span={6}>
@@ -55,7 +56,7 @@ class PayTypeConfig extends Component {
     }
 
     renderPayee(payType, typeModel) {
-        if (payType.type == 1) {
+        if (payType.type != 1) {
             return ""
         }
         return (
@@ -80,7 +81,7 @@ class PayTypeConfig extends Component {
     }
 
     renderPayeeConfig(payType, typeModel) {
-        if (payType.type == 1) {
+        if (payType.type !== 1) {
             return ""
         }
         return (

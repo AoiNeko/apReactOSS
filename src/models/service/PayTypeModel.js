@@ -69,9 +69,9 @@ export default class PayTypeModel {
         if (this.currentFetchId !== this.lastFetchId) {
             return 
         }
-
-        this.dataSource = data.result.list.map(payee => ({
-            text: payee.desc,
+        debugger
+        this.dataSource = data.result.map(payee => ({
+            text: payee.name,
             value: payee.id
         }))
     }
@@ -110,6 +110,7 @@ export default class PayTypeModel {
  
     @action 
     payeeConfigFetched(data) {
+        debugger
         this.payeeConfigJson = data.result.configJson
         this.payeeConfigDesc =data.result.desc
     }

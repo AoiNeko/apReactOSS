@@ -29,7 +29,7 @@ export default class PaymentToolModel {
     dataFetch(data) {
         this.loading = false
         this.dataSource = data.result.list
-        this.pagination.total = data.result.total
+        // this.pagination.total = data.result.total
     }
 
 
@@ -40,8 +40,8 @@ export default class PaymentToolModel {
         key: 'type',
     }, {
         title: '名称',
-        dataIndex: 'name',
-        key: 'name',
+        dataIndex: 'description',
+        key: 'description',
     }, {
         title: '创建时间',
         dataIndex: 'createdDate',
@@ -50,18 +50,5 @@ export default class PaymentToolModel {
         title: '备注',
         dataIndex: 'desc',
         key: 'desc',
-    }, {
-        title: '详情',
-        dataIndex: 'detail',
-        render: (text, record) => {
-            return (
-                this.dataSource.length >= 1
-                    ? (
-                        <Popconfirm title="Sure to check?" >
-                            <a href="javascript:;">详情</a>
-                        </Popconfirm>
-                    ) : null
-            );
-        }
     }];
 }
