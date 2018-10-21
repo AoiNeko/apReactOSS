@@ -19,11 +19,18 @@ export default class ParkPaymentConfigDetailModel {
     @observable
     payTypeArr = []
 
+
     @action
-    getBusinessData(values) {
+    init(parkId) {
+        this.parkId = parkId
+        this.getBusinessData()
+    }
+
+    @action
+    getBusinessData() {
         this.loading = true
-        let page = values ? values.current + 1 : 1
-        let size = 10
+        let page = 1
+        let size = 100
         let param = {
             "url": "/paycenter/bussinessMgt/get?page=" + page + "&size=" + size,
             "success": this.dataFetch.bind(this)
@@ -56,25 +63,37 @@ export default class ParkPaymentConfigDetailModel {
     @action
     dataFetch(data) {
         this.dataSource = data.result.list
-        if (this.pagination) {
-            this.pagination.total = data.result.total
+
+        debugger
+        if (this.parkId !== null) {
+            let param = {
+                "url": "/paycenter/parkPaymentConfig/detail",
+                "success": this.parkPaymentConfigGet.bind(this)
+            }
+
+            if (this.parkId) {
+                param.url += "?parkId=" + this.parkId
+            }
+            let request = new RequestTool()
+            request.commonFetch(param)
         }
-        let param = {
-            "url": "/paycenter/parkPaymentConfig/detail",
-            "success": this.parkPaymentConfigGet.bind(this)
+        else {
+            this.parkConfig = []
+            this.preConfig()
         }
 
-        if (this.parkId) {
-            param.url += "?parkId=" + this.parkId
-        }
-        let request = new RequestTool()
-        request.commonFetch(param)
     }
 
     @action
     parkPaymentConfigGet(data) {
+        debugger
         this.parkConfig = data.result
         this.preConfig()
+    }
+
+    @action
+    setParkId(id) {
+        this.parkId = id
     }
 
     @action
@@ -83,7 +102,7 @@ export default class ParkPaymentConfigDetailModel {
     }
 
     getPaySceneModel(sceneId) {
-        return this.paySceneMap[sceneId] 
+        return this.paySceneMap[sceneId]
     }
 
     @action
@@ -94,7 +113,7 @@ export default class ParkPaymentConfigDetailModel {
             let model = this.paySceneMap[element.payScene]
             if (model) {
                 model.setChecked(true)
-                model.addPayType(element.payType, {key: element.payee, text: element.payeeDesc})
+                model.addPayType(element.payType, { key: element.payee, text: element.payeeDesc })
             }
         }
     }

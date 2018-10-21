@@ -111,8 +111,8 @@ export default class PayTypeModel {
     @action 
     payeeConfigFetched(data) {
         debugger
-        this.payeeConfigJson = data.result.configJson
-        this.payeeConfigDesc =data.result.desc
+        this.payeeConfigJson = data.result[0].configJson
+        this.payeeConfigDesc =data.result[0].description
     }
 
     @action 

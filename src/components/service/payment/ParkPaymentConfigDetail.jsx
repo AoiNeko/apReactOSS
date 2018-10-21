@@ -12,9 +12,9 @@ const store = new ParkPaymentConfigDetailModel()
 @observer
 class ParkPaymentConfigDetail extends Component {
     componentWillMount() {
-        store.getBusinessData()
         const {parkStore} =  this.props
         parkStore.setDetailStore(store)
+        store.init(parkStore.parkId)
     }
     render() {
         return (<List dataSource={store.dataSource}

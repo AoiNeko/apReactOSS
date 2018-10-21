@@ -40,7 +40,7 @@ class ParkPaymentConfig extends Component {
                     <Button type="primary">编辑</Button>
                 </Col>
                 <Col span={1} style={{ "display": "flex", "justifyContent": "center", margin: "1vh" }}>
-                    <Button type="primary">新增</Button>
+                    <Button type="primary" onClick={() => store.newParkConfig()}>新增</Button>
                 </Col>
                 <Col span={1} style={{ "display": "flex", "justifyContent": "center", margin: "1vh" }}>
                     <Button type="primary" onClick={() => store.generalConfig()} > 通用配置</Button>

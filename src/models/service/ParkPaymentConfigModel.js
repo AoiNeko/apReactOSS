@@ -21,6 +21,8 @@ export default class ParkPaymentConfigModel {
     detailStore = {}
     @observable
     parkId = 0
+    @observable
+    isNewParkConfig = false
 
     @action
     getParkPaymengConfigData(values) {
@@ -33,12 +35,42 @@ export default class ParkPaymentConfigModel {
             "success": this.dataFetch.bind(this)
         }
 
-      
+
         request.commonFetch(param)
     }
 
     @action
     generalConfig() {
+        this.modalTitle = '通用支付配置'
+        this.isNewParkConfig = false
+        this.parkId = 0
+        if (this.detailStore.init) {
+            this.detailStore.init(this.parkId)   
+        }
+        this.modalVisible = true
+    }
+
+    @action
+    newParkConfig() {
+        this.isNewParkConfig = true
+        this.modalTitle = "新增车场配置"
+        this.parkId = null
+        if (this.detailStore.init) {
+            this.detailStore.init(this.parkId)   
+        }
+        this.modalVisible = true
+        
+    }
+
+    @action
+    editParkConfig(parkId) {
+        this.isNewParkConfig = false
+        this.modalTitle = "修改车场配置"
+        debugger
+        this.parkId = parkId
+         if (this.detailStore.init) {
+            this.detailStore.init(this.parkId)   
+        }
         this.modalVisible = true
     }
 
@@ -91,8 +123,8 @@ export default class ParkPaymentConfigModel {
                 }
             }
         }
-    
-        let requestObj  = {
+
+        let requestObj = {
             "parkId": this.parkId,
             "parkPaymentConfig": parkPaymentArray,
             "payeeConfig": payeeConfigArray
@@ -105,7 +137,7 @@ export default class ParkPaymentConfigModel {
         }
 
         request.commonPost(param)
-        
+
         this.modalVisible = false
     }
 
@@ -123,22 +155,18 @@ export default class ParkPaymentConfigModel {
     @action
     handleDetail(record) {
         this.parkId = record.parkId
-        this.modalVisible = true
+        this.editParkConfig(this.parkId)
     }
 
 
     columns = [{
         title: 'id',
-        dataIndex: 'id',
-        key: 'id',
+        dataIndex: 'parkId',
+        key: 'parkId',
     }, {
         title: '车场名',
         dataIndex: 'parkName',
         key: 'parkName',
-    }, {
-        title: '业务场景',
-        dataIndex: 'payScence',
-        key: 'payScence',
     }, {
         title: '操作',
         dataIndex: 'operation',
