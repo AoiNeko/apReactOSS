@@ -178,25 +178,14 @@ Mock.mock(/payeeConfig\/get/, {
 
 Mock.mock(/parkPaymentConfig\/get/,{"code":200,"desc":"success","result":{"total":1,"list":[{"id":1,"parkId":200,"parkNo":null,"payType":2,"payScene":0,"payee":2,"cooperator":"polyzk","isDeleted":false,"createdDate":null,"createdBy":null,"updatedDate":1539585485000,"updatedBy":null}],"pageNum":1,"pageSize":10,"size":1,"startRow":1,"endRow":1,"pages":1,"prePage":0,"nextPage":0,"isFirstPage":true,"isLastPage":true,"hasPreviousPage":false,"hasNextPage":false,"navigatePages":8,"navigatepageNums":[1],"navigateFirstPage":1,"navigateLastPage":1},"timestamp":1539858487374})
 
-Mock.mock(/parkPaymentConfig\/detail/, {
-    code: 200,
-    result:
-    [
-        
-    ]
-
-})
+Mock.mock(/parkPaymentConfig\/detail/, 
+{"code":200,"desc":"success","result":[{"id":8,"parkId":0,"parkNo":null,"payType":1,"payScene":1,"payee":1,"cooperator":null,"isDeleted":false,"createdDate":1539944526000,"createdBy":"liangli","updatedDate":1539944528000,"updatedBy":null}],"timestamp":1540175855787}
+)
 
 
 Mock.mock(/payee\/search/, {"code":200,"desc":"success","result":[{"id":1,"desc":null,"name":"悦停","isDeleted":null,"createdDate":null,"createdBy":null,"updatedDate":null,"updatedBy":null}],"timestamp":1539936076308})
 
-Mock.mock(/payee\/config/, {
-    code: 200,
-    result: {
-        configJson : "{\"a\":\"b\"}",
-        desc: "我顶顶顶",
-        payScene:"1",
-        payType: "3"
-    }
-    
-})
+Mock.mock(/payee\/config/, {"code":200,"desc":"success","result":[{"id":9,"payee":1,"payType":1,"payScene":1,"configJson":"a1r1","description":"dddd","isDeleted":false,"createdDate":1539944526000,"createdBy":"liangli","updatedDate":1539944528000,"updatedBy":null}],"timestamp":1540175861285})
+
+
+Mock.mock(/park\/search/, {"code":200,"desc":"success","result":[{"id":1,"desc":null,"name":"悦停车厂","isDeleted":null,"createdDate":null,"createdBy":null,"updatedDate":null,"updatedBy":null}],"timestamp":1539936076308})

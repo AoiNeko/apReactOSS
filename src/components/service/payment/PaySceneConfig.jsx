@@ -19,7 +19,6 @@ class PaySceneConfig extends Component {
         let model = new PaySceneModel()
         model.setSceneId(payScene.id)
         store.setPaySceneModel(payScene.id, model)
-        store.preConfig()
     }
     render() {
 
@@ -28,7 +27,7 @@ class PaySceneConfig extends Component {
         let model = store.paySceneMap[payScene.id]
         return (<div style={{ "width": "100%", "padding": "2px" }}>
             <Row>
-                <Col span={6}>
+                <Col span={12}>
                     <div> {payScene.name} </div>
                 </Col>
                 <Col span={6}>

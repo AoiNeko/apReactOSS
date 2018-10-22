@@ -105,15 +105,35 @@ export default class ParkPaymentConfigDetailModel {
         return this.paySceneMap[sceneId]
     }
 
+    /**
+     * 获取车场支付配置后 刷新配置组件内容
+     */
     @action
     preConfig() {
+        for (var key in this.paySceneMap) {
+            if (this.paySceneMap.hasOwnProperty(key)) {
+                var sceneModel = this.paySceneMap[key];
+                for (var typeKey in sceneModel.payTypeMap) {
+                    if (sceneModel.payTypeMap.hasOwnProperty(typeKey)) {
+                        var typeModel = sceneModel.payTypeMap[typeKey];
+                        typeModel.clear()
+                    }
+                }
+
+            }
+        }
+
 
         for (var index = 0; index < this.parkConfig.length; index++) {
             var element = this.parkConfig[index];
             let model = this.paySceneMap[element.payScene]
             if (model) {
                 model.setChecked(true)
-                model.addPayType(element.payType, { key: element.payee, text: element.payeeDesc })
+                model.addPayType(element.payType, { key: element.payee, text: element.payeeName })
+                for (var i in model.payTypeMap) {
+                    var typeModel = model.payTypeMap[i]
+                    typeModel.init(model, i, element.payScene, element.payee)
+                }
             }
         }
     }

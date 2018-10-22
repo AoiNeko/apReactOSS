@@ -50,8 +50,9 @@ export default class PaySceneModel {
         return this.payTypeMap[id]
     }
 
-    
-    hasType (typeId) {
+    @action
+    hasType(typeId) {
+        debugger
         for (var index = 0; index < this.payTypeArr.length; index++) {
             var element = this.payTypeArr[index];
             if (element == typeId) {

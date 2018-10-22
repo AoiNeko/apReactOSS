@@ -16,17 +16,9 @@ class PayTypeConfig extends Component {
         let payscenceModel = store.getPaySceneModel(paySceneId)
         debugger
         payscenceModel.setPayTypeMap(payType.type, typeModel)
-
-        if (payscenceModel.hasType(payType.type)) {
-            typeModel.setChecked(true)
-
-            let payee = payscenceModel.payeeMap[payType.type]
-            typeModel.setPayee(payee)
-            typeModel.setPaysceneId(paySceneId)
-            typeModel.setPayType(payType.type)
-            typeModel.fetchPayeeConfigJson()
-        }
+        typeModel.init(payscenceModel, payType.type, paySceneId)
     }
+
     render() {
         let { payType } = this.props
         const { store } = this.props
@@ -56,9 +48,6 @@ class PayTypeConfig extends Component {
     }
 
     renderPayee(payType, typeModel) {
-        if (payType.type != 1) {
-            return ""
-        }
         return (
             <Col span={3}>
                 <Select
@@ -81,19 +70,16 @@ class PayTypeConfig extends Component {
     }
 
     renderPayeeConfig(payType, typeModel) {
-        if (payType.type !== 1) {
-            return ""
-        }
         return (
             <div>
                 <Row>
                     <Col span={12}>
-                        <TextArea autosize placeholder="填写收款人的JSON格式的信息对" value={typeModel.payeeConfigJson} onChange={(value)=> typeModel.setPayeeConfigJson(value)}></TextArea>
+                        <TextArea autosize placeholder="填写收款人的JSON格式的信息对" value={typeModel.payeeConfigJson} onChange={(value) => typeModel.setPayeeConfigJson(value)}></TextArea>
                     </Col>
                 </Row>
                 <Row>
                     <Col span={12}>
-                        <Input placeholder="填写备注" value={typeModel.payeeConfigDesc}  onChange={(value)=> typeModel.setPayeeDesc(value)}></Input>
+                        <Input placeholder="填写备注" value={typeModel.payeeConfigDesc} onChange={(value) => typeModel.setPayeeDesc(value)}></Input>
                     </Col>
                 </Row>
             </div>

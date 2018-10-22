@@ -38,21 +38,46 @@ export default class PayTypeModel {
     payeeConfigDesc
 
     @action
+    init(payscenceModel, payType, paySceneId, payeeId) {
+        this.setPaysceneId(paySceneId)
+        this.setPayType(payType)
+        if (payscenceModel.hasType(payType)) {
+            this.setChecked(true)
+            let payee = payscenceModel.payeeMap[payType]
+            this.setPayee(payee)
+            this.fetchPayeeConfigJson()
+        }
+    }
+
+    @action
+    clear() {
+        this.payee = null
+        this.payeeSelect = []
+        this.isChecked = false
+        this. payeeConfigJson = ""
+        this.payeeConfigDesc= ""
+    }
+
+    @action
     setChecked(isChecked) {
         this.isChecked = isChecked
     }
 
+/**
+ * 
+ * @param {text:"悦停", key: "1"} payee 
+ */
     @action
     setPayee(payee) {
         this.payee = payee
-        this.payeeSelect = [{label: payee.text, key: payee.key}]
+        this.payeeSelect = [{ label: payee.text, key: payee.key }]
     }
 
     @action
     fetchPayee(value) {
         if (!value)
         { return }
-        this.lastFetchId  += 1
+        this.lastFetchId += 1
         this.fetching = true
         this.currentFetchId = this.lastFetchId;
         let param = {
@@ -67,7 +92,7 @@ export default class PayTypeModel {
     @action
     handlePayeeFetch(data) {
         if (this.currentFetchId !== this.lastFetchId) {
-            return 
+            return
         }
         debugger
         this.dataSource = data.result.map(payee => ({
@@ -75,15 +100,19 @@ export default class PayTypeModel {
             value: payee.id
         }))
     }
-
+    /**
+     * 修改了收款人
+     * @param {*} value 
+     */
     @action
     handleChange(value) {
         this.fetching = false
-        this.payeeSelect = value.length > 1? [value[value.length - 1]] : value
+        debugger
+        this.payeeSelect = value.length > 1 ? [value[value.length - 1]] : value
         this.fetchPayeeConfigJson()
     }
 
-    @action 
+    @action
     setPaysceneId(sceneId) {
         this.paysceneId = sceneId
     }
@@ -94,12 +123,10 @@ export default class PayTypeModel {
 
     @action
     fetchPayeeConfigJson() {
-        if (this.payTypeId == null  || this.paysceneId == null) {
-            return 
-        }
 
+        debugger
         let param = {
-            "url": "/paycenter/payee/config?payee=" + this.payee.key + "&payScene=" + this.paysceneId + "&payType="  + this.payTypeId,
+            "url": "/paycenter/payee/config?payee=" + this.payeeSelect[0].key + "&payScene=" + this.paysceneId + "&payType=" + this.payTypeId,
             "success": this.payeeConfigFetched.bind(this)
         }
 
@@ -107,22 +134,22 @@ export default class PayTypeModel {
         request.commonFetch(param)
 
     }
- 
-    @action 
+
+    @action
     payeeConfigFetched(data) {
         debugger
         this.payeeConfigJson = data.result[0].configJson
-        this.payeeConfigDesc =data.result[0].description
+        this.payeeConfigDesc = data.result[0].description
     }
 
-    @action 
+    @action
     setPayeeConfigJson(value) {
-        this.payeeConfigJson =  value.target.value
+        this.payeeConfigJson = value.target.value
     }
 
-    
-    @action 
+
+    @action
     setPayeeDesc(value) {
-        this.payeeConfigDesc =  value.target.value
+        this.payeeConfigDesc = value.target.value
     }
 }

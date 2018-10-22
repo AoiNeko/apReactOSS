@@ -1,6 +1,6 @@
 import { observable, computed, action } from "mobx";
 import RequestTool from "../RequestTool"
-import { Popconfirm } from 'antd';
+import { Popconfirm , message } from 'antd';
 import React, { Component } from "react";
 
 
@@ -23,6 +23,18 @@ export default class ParkPaymentConfigModel {
     parkId = 0
     @observable
     isNewParkConfig = false
+    //新增车场配置时选中的车场信息
+    @observable
+    parkSelect = []
+    //车场下拉列表内容
+    @observable
+    parksSource = []
+    @observable
+    fetching = false
+    @observable
+    currentFetchId = 0
+    @observable
+    lastFetchId = 0
 
     @action
     getParkPaymengConfigData(values) {
@@ -45,7 +57,7 @@ export default class ParkPaymentConfigModel {
         this.isNewParkConfig = false
         this.parkId = 0
         if (this.detailStore.init) {
-            this.detailStore.init(this.parkId)   
+            this.detailStore.init(this.parkId)
         }
         this.modalVisible = true
     }
@@ -56,10 +68,10 @@ export default class ParkPaymentConfigModel {
         this.modalTitle = "新增车场配置"
         this.parkId = null
         if (this.detailStore.init) {
-            this.detailStore.init(this.parkId)   
+            this.detailStore.init(this.parkId)
         }
         this.modalVisible = true
-        
+
     }
 
     @action
@@ -68,8 +80,8 @@ export default class ParkPaymentConfigModel {
         this.modalTitle = "修改车场配置"
         debugger
         this.parkId = parkId
-         if (this.detailStore.init) {
-            this.detailStore.init(this.parkId)   
+        if (this.detailStore.init) {
+            this.detailStore.init(this.parkId)
         }
         this.modalVisible = true
     }
@@ -85,6 +97,44 @@ export default class ParkPaymentConfigModel {
     }
 
     @action
+    fetchPark(value) {
+
+        if (!value)
+        { return }
+        this.lastFetchId += 1
+        this.fetching = true
+        this.currentFetchId = this.lastFetchId;
+        let param = {
+            "url": "/paycenter/park/search?name=" + value,
+            "success": this.fetchComplete.bind(this)
+        }
+
+        let request = new RequestTool()
+        request.commonFetch(param)
+       
+
+    }
+
+    @action
+    fetchComplete(data) {
+        this.fetching = false
+        if (this.currentFetchId !== this.lastFetchId) {
+            return
+        }
+        debugger
+        this.parksSource = data.result.map(park => ({
+            text: park.name,
+            value: park.id
+        }))
+    }
+
+    @action
+    handleParkSelectChange(value) {
+        this.fetching = false
+        this.parkSelect = value.length > 1 ? [value[value.length - 1]] : value
+    }
+
+    @action
     setDetailStore(store) {
         this.detailStore = store
     }
@@ -92,6 +142,12 @@ export default class ParkPaymentConfigModel {
     @action
     configOk() {
         debugger
+
+        if (this.isNewParkConfig && this.parkSelect.length == 0) {
+            message.error("选择配置的车场")
+            return 
+        }
+
         let parkPaymentArray = []
         let payeeConfigArray = []
         for (var sceneId in this.detailStore.paySceneMap) {
@@ -122,6 +178,10 @@ export default class ParkPaymentConfigModel {
                     }
                 }
             }
+        }
+        
+        if (this.isNewParkConfig && this.parkSelect.length > 0) {
+            this.parkId = this.parkSelect[0].key
         }
 
         let requestObj = {
