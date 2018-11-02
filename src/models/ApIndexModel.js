@@ -64,6 +64,22 @@ class ApIndexModel {
         request.commonFetch(param)
     }
 
+    @action
+    getMenuName(menuList, resUrl) {
+        let name = ""
+        menuList.map(menu => {
+            if(menu.resUrl == resUrl) {
+                name = menu.name
+            }
+
+            if (name == "" && menu.children) {
+                name = this.getMenuName(menu.children, resUrl)
+            }
+        })
+
+        return name
+    }
+
 
 
     @action

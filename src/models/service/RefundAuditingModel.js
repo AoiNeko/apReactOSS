@@ -2,6 +2,9 @@ import { observable, computed, action } from "mobx";
 import RequestTool from "../RequestTool"
 import { Popconfirm } from 'antd';
 import React, { Component } from "react";
+
+const request = new RequestTool()
+
 export default class RefundAuditingModel {
 
     @observable dataSource = []
@@ -22,7 +25,7 @@ export default class RefundAuditingModel {
 
     @observable payments = []
 
-    @observable refundInfo = {}
+    @observable refundInfo = observable.map({})
 
     @observable refundLoading = true
 
@@ -82,7 +85,7 @@ export default class RefundAuditingModel {
             "url": "/paycenter/refund/list?page=" + page + "&size=" + size,
             "success": this.dataFetch.bind(this)
         }
-        let request = new RequestTool()
+        
         request.commonFetch(param)
 
     }
@@ -98,6 +101,7 @@ export default class RefundAuditingModel {
     handleDetail(record) {
         console.log("row is ", record)
         this.auditingTradeNo = record.refundNo
+        this.getOrderRefundInfo()
         this.modalVisible = true
     }
 
@@ -108,7 +112,20 @@ export default class RefundAuditingModel {
 
     @action
     auditingSubmit() {
-        this.modalVisible = false
+      
+        
+         let param = {
+            "url": "/paycenter/refund/submit?refundNo=" + this.refundInfo.refundNo + "&status=" + this.refundInfo.status + "&auditedComment=" + this.refundInfo.auditingDesc ,
+            "success": this.submitSuccess.bind(this)
+        }
+        request.commonFetch(param)
+
+    }
+
+    @action
+    submitSuccess(data) {
+            debugger
+          this.modalVisible = false
     }
 
     @action
@@ -118,10 +135,7 @@ export default class RefundAuditingModel {
             "url": "/paycenter/refund/order?refundNo=" + this.auditingTradeNo,
             "success": this.orderRefundInfoData.bind(this)
         }
-
-        let request = new RequestTool()
         request.commonFetch(param)
-
     }
     @action
     orderRefundInfoData(data) {
@@ -133,10 +147,11 @@ export default class RefundAuditingModel {
 
     @action
     refundInfoDesc(e) {
-        this.refundInfo.auditingDesc = e.target.value
+     this.refundInfo ["auditingDesc"] =  e.target.value
     }
     @action
     refundInfoStatus(e) {
-        this.refundInfo.auditingStatus = e.target.value
+        this.refundInfo ["status"] =  e.target.value
+     
     }
 }

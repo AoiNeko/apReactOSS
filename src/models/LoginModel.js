@@ -1,6 +1,5 @@
 import { observable, computed, action } from "mobx";
 
-import TodoModel from "./TodoModel";
 
 export default class LoginModel {
   

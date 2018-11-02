@@ -1,11 +1,13 @@
 import React from "react"
-import { render } from "react-dom"
+window.React = React
+import ReactDOM from "react-dom"
+window.ReactDOM = ReactDOM
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import DevTools from "mobx-react-devtools"
-
 import './css/index.css';
 import ApIndex from './components/ApIndex'
 import Login from './components/Login'
+
 
  Date.prototype.format = function(format) {
         var date = {
@@ -28,8 +30,8 @@ import Login from './components/Login'
         return format;
  }
 
-render(
-  <div>
+ReactDOM.render(
+  <div style={{height: "100%", width: "100%"}}>
     <DevTools />
     <BrowserRouter>
         <Switch>

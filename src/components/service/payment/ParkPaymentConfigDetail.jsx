@@ -22,7 +22,7 @@ class ParkPaymentConfigDetail extends Component {
             <div>
 
                 {parkStore.isNewParkConfig ?
-                    <Row>
+                    <Row gutter={4}>
                         <Col span={12}>
                             <Select
                                 mode="multiple"
@@ -37,6 +37,10 @@ class ParkPaymentConfigDetail extends Component {
                             >
                                 {parkStore.parksSource.map(d => <Option key={d.value}>{d.text}</Option>)}
                             </Select>
+                        </Col>
+
+                         <Col span={4}>
+                            <Input placeholder="合作商代码" value={parkStore.cooperator} onChange={(value)=> parkStore.editCooperator(value)}/>
                         </Col>
                     </Row> : ""
                 }

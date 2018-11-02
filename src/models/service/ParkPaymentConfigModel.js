@@ -22,6 +22,8 @@ export default class ParkPaymentConfigModel {
     @observable
     parkId = 0
     @observable
+    cooperator 
+    @observable
     isNewParkConfig = false
     //新增车场配置时选中的车场信息
     @observable
@@ -116,6 +118,12 @@ export default class ParkPaymentConfigModel {
     }
 
     @action
+    editCooperator(value) {
+        this.cooperator = value.target.value
+
+    }
+
+    @action
     fetchComplete(data) {
         this.fetching = false
         if (this.currentFetchId !== this.lastFetchId) {
@@ -141,8 +149,6 @@ export default class ParkPaymentConfigModel {
 
     @action
     configOk() {
-        debugger
-
         if (this.isNewParkConfig && this.parkSelect.length == 0) {
             message.error("选择配置的车场")
             return 
@@ -187,7 +193,8 @@ export default class ParkPaymentConfigModel {
         let requestObj = {
             "parkId": this.parkId,
             "parkPaymentConfig": parkPaymentArray,
-            "payeeConfig": payeeConfigArray
+            "payeeConfig": payeeConfigArray,
+            "cooperator": this.cooperator
         }
 
         let param = {

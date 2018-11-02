@@ -15,7 +15,7 @@ class OrderRefundAuditing extends Component {
     render() {
         const { store } = this.props
         return (<List>
-            <List.Item>
+            <List.Item key="1">
                 <div style={{ width: '100%' }}>
                     <Row type="flex" gutter={{ xs: 8, sm: 16, md: 24 }}>
                         <Col span={3} style={{ "display": "flex", "justifyContent": "start", marginTop: '1vh' }} >车场名：</Col>
@@ -39,11 +39,11 @@ class OrderRefundAuditing extends Component {
                     </Row>
                 </div>
             </List.Item>
-            <List.Item>
+            <List.Item key="2">
                 <div style={{ width: '100%' }}>
                     {
                         store.payments ? store.payments.map((payment) => {
-                            return (<Row type="flex" gutter={{ xs: 8, sm: 16, md: 24 }}>
+                            return (<Row type="flex" gutter={{ xs: 8, sm: 16, md: 24 }} key= {payment.id}>
                                 <Col span={3} style={{ "display": "flex", "justifyContent": "start", marginTop: '1vh' }} >缴费：</Col>
                                 <Col span={3} style={{ "display": "flex", "justifyContent": "start", marginTop: '1vh' }} >{payment.paymentType}</Col>
                                 <Col span={3} style={{ "display": "flex", "justifyContent": "start", marginTop: '1vh' }} >{payment.notifyDate}</Col>
@@ -56,7 +56,7 @@ class OrderRefundAuditing extends Component {
 
                 </div>
             </List.Item>
-            <List.Item>
+            <List.Item key="3">
                 <div style={{ width: '100%' }}>
                     <Row type="flex" gutter={{ xs: 8, sm: 16, md: 24 }}>
                         <Col span={3} style={{ "display": "flex", "justifyContent": "start", marginTop: '1vh' }} >申请退费金额：</Col>
@@ -84,15 +84,15 @@ class OrderRefundAuditing extends Component {
 
                 </div>
             </List.Item>
-            <List.Item>
+            <List.Item key="4">
                 <div style={{ width: '100%' }}>
                     <Row type="flex" gutter={{ xs: 8, sm: 16, md: 24 }}>
                         <Col span={3} style={{ "display": "flex", "justifyContent": "start", marginTop: '1vh' }} >审核状态: </Col>
                         <Col span={18} style={{ "display": "flex", "justifyContent": "start", marginTop: '1vh' }} >
                             <Radio.Group onChange={(e) => store.refundInfoStatus(e)} value={store.refundInfo.status}>
-                                <Radio value={0}>待处理</Radio>
-                                <Radio value={1}>通过</Radio>
-                                <Radio value={2}>驳回</Radio>
+                                <Radio value={1}>待处理</Radio>
+                                <Radio value={2}>通过</Radio>
+                                <Radio value={4}>驳回</Radio>
                             </Radio.Group>
                         </Col>
 
@@ -100,7 +100,7 @@ class OrderRefundAuditing extends Component {
                     <Row type="flex" gutter={{ xs: 8, sm: 16, md: 24 }}>
                         <Col span={3} style={{ "display": "flex", "justifyContent": "start", marginTop: '1vh' }} >理由: </Col>
                         <Col span={18} style={{ "display": "flex", "justifyContent": "start", marginTop: '1vh' }} >
-                            <Input.TextArea onChange={(e) => store.refundInfoDesc(e)} value={store.refundInfo.auditingComment ? store.refundInfo.auditingComment : ""}></Input.TextArea>
+                            <Input.TextArea onChange={(e) => store.refundInfoDesc(e)} value={store.refundInfo.auditingDesc ? store.refundInfo.auditingDesc : ""}></Input.TextArea>
                         </Col>
                     </Row>
                 </div>

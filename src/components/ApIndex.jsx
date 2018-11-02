@@ -30,8 +30,9 @@ class ApIndex extends Component {
   render() {
     const { props } = this 
     const res = props.match.params.res ? props.match.params.res: "index"
+    const name = store.getMenuName(store.userMenu, res)
     return (
-      <Layout>
+      <Layout style={{height:"100%", width: "100%"}}>
         <Header>
            <div className="logo">支付平台</div>
         </Header>
@@ -59,7 +60,7 @@ class ApIndex extends Component {
             </Menu>
           </Sider>
           <Content>
-            <Page res={res} history={this.props.history}/>
+            <Page res={res} title={name} history={this.props.history}/>
           </Content>
 
 

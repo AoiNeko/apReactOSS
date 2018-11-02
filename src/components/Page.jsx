@@ -6,8 +6,6 @@ import PaymentTool from './service/PaymentTool'
 import BussinessMgt from './service/BussinessMgt'
 import PayeeConfig from './service/PayeeConfig'
 import ParkPaymentConfig from './service/ParkPaymentConfig'
-import AoCalendar from './AoCalendar'
-import DayPage from './DayPage'
 const { Header, Content } = Layout;
 const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
@@ -29,16 +27,8 @@ class Page extends Component {
 
     getComponent() {
         const res = this.props.res
-
         if (!res || res == "index") {
             return (<div>首页</div>)
-        }
-        //日历
-        else if (res == "cal") {
-            return (<AoCalendar history={this.props.history} />)
-        }
-        else if (res == "day") {
-            return (<DayPage history={this.props.history} />)
         }
         else if (res == "refund") {
             return (<RefundAuditing history={this.props.history} />)
@@ -61,8 +51,9 @@ class Page extends Component {
     }
 
     render() {
+         const name =  this.props.title
         return (<Layout>
-            <Header style={{ backgroundColor: "white" }}><div>支付工具配置</div></Header>
+            <Header style={{ backgroundColor: "white" }}><div>{name}</div></Header>
             <Content>
                 {this.getComponent()}
             </Content>
