@@ -21,24 +21,10 @@ class ParkPaymentConfig extends Component {
         return (<div>
             <Row>
                 <Col span={6} style={{ "display": "flex", "justifyContent": "center", margin: "1vh" }} > <Input placeholder="名称" onChange={(value) => { store.form.name = value.target.value }} /></Col>
-                <Col span={4} style={{ "display": "flex", "justifyContent": "center", margin: "1vh" }}>
-                    <Select placeholder="请选择状态" style={{ width: '100%' }} onChange={(value) => { store.form.status = value }}>
-                        <Option value="0">启用</Option>
-                        <Option value="1">禁用</Option>
-                    </Select></Col>
-                <Col span={4} style={{ "display": "flex", "justifyContent": "center", margin: "1vh" }}>
-                    <Select placeholder="请选择支付类型" style={{ width: '100%' }} onChange={(value) => { store.form.type = value }}>
-                        <Option value="ap">自有</Option>
-                        <Option value="poly">保利</Option>
-                    </Select>
+                <Col span={1} style={{ "display": "flex", "justifyContent": "center", margin: "1vh" }}>
+                    <Button type="primary"  onClick={() => store.getParkPaymengConfigData()}>查询</Button>
                 </Col>
 
-                <Col span={1} style={{ "display": "flex", "justifyContent": "center", margin: "1vh" }}>
-                    <Button type="primary">查询</Button>
-                </Col>
-                <Col span={1} style={{ "display": "flex", "justifyContent": "center", margin: "1vh" }}>
-                    <Button type="primary">编辑</Button>
-                </Col>
                 <Col span={1} style={{ "display": "flex", "justifyContent": "center", margin: "1vh" }}>
                     <Button type="primary" onClick={() => store.newParkConfig()}>新增</Button>
                 </Col>

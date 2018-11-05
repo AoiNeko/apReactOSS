@@ -35,16 +35,16 @@ export default class PayeeConfigModel {
 
     columns = [{
         title: '收款人',
-        dataIndex: 'payee',
-        key: 'payee',
+        dataIndex: 'payeeName',
+        key: 'payeeName',
     }, {
         title: '支付工具',
-        dataIndex: 'payType',
-        key: 'payScene',
+        dataIndex: 'payTypeName',
+        key: 'payTypeName',
     }, {
         title: '业务场景',
-        dataIndex: 'payScene',
-        key: 'payScene',
+        dataIndex: 'paySceneName',
+        key: 'paySceneName',
     },{
         title: '支付配置',
         dataIndex: 'configJson',

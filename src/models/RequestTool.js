@@ -1,4 +1,4 @@
-import './mockdata'
+// import './mockdata'
 import axios from 'axios'
 export default class RequestTool {
     commonFetch(param) {
