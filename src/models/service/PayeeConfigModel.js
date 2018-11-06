@@ -37,18 +37,22 @@ export default class PayeeConfigModel {
         title: '收款人',
         dataIndex: 'payeeName',
         key: 'payeeName',
+         width: "5vw"
     }, {
         title: '支付工具',
         dataIndex: 'payTypeName',
         key: 'payTypeName',
+         width: "5vw"
     }, {
         title: '业务场景',
         dataIndex: 'paySceneName',
         key: 'paySceneName',
+        width: "10vw"
     },{
         title: '支付配置',
         dataIndex: 'configJson',
         key: 'configJson',
+        width: "50vw"
     },{
         title: '备注',
         dataIndex: 'desc',

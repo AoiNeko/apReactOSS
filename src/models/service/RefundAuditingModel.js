@@ -57,10 +57,24 @@ export default class RefundAuditingModel {
         title: '退费金额',
         dataIndex: 'amount',
         key: 'amount',
+        render: (text, record) => {
+          return parseFloat(text / 100).toFixed(2) + "元"
+        }
     }, {
         title: '状态',
         dataIndex: 'status',
         key: 'status',
+        render: (text, record) => {
+            if (text == 1) {
+                return "申请"
+            }
+            else if (text = 2) {
+                return "通过"
+            }
+            else if (text = 4) {
+                return "驳回"
+            }
+        }
     }, {
         title: '',
         dataIndex: 'operation',
@@ -68,7 +82,7 @@ export default class RefundAuditingModel {
             return (
                 this.dataSource.length >= 1
                     ? (
-                        <Popconfirm title="Sure to delete?" onConfirm={() => this.handleDetail(record)}>
+                        <Popconfirm title="确认审核?" onConfirm={() => this.handleDetail(record)}>
                             <a href="javascript:;">详情</a>
                         </Popconfirm>
                     ) : null
@@ -85,7 +99,7 @@ export default class RefundAuditingModel {
             "url": "/paycenter/refund/list?page=" + page + "&size=" + size,
             "success": this.dataFetch.bind(this)
         }
-        
+
         request.commonFetch(param)
 
     }
@@ -112,10 +126,10 @@ export default class RefundAuditingModel {
 
     @action
     auditingSubmit() {
-      
-        
-         let param = {
-            "url": "/paycenter/refund/submit?refundNo=" + this.refundInfo.refundNo + "&status=" + this.refundInfo.status + "&auditedComment=" + this.refundInfo.auditingDesc ,
+
+
+        let param = {
+            "url": "/paycenter/refund/submit?refundNo=" + this.refundInfo.refundNo + "&status=" + this.refundInfo.status + "&auditedComment=" + this.refundInfo.auditingDesc,
             "success": this.submitSuccess.bind(this)
         }
         request.commonFetch(param)
@@ -124,8 +138,8 @@ export default class RefundAuditingModel {
 
     @action
     submitSuccess(data) {
-            debugger
-          this.modalVisible = false
+        debugger
+        this.modalVisible = false
     }
 
     @action
@@ -147,11 +161,11 @@ export default class RefundAuditingModel {
 
     @action
     refundInfoDesc(e) {
-     this.refundInfo ["auditingDesc"] =  e.target.value
+        this.refundInfo["auditingDesc"] = e.target.value
     }
     @action
     refundInfoStatus(e) {
-        this.refundInfo ["status"] =  e.target.value
-     
+        this.refundInfo["status"] = e.target.value
+
     }
 }
