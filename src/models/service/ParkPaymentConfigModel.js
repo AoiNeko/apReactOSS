@@ -80,7 +80,6 @@ export default class ParkPaymentConfigModel {
     editParkConfig(parkId) {
         this.isNewParkConfig = false
         this.modalTitle = "修改车场配置"
-        debugger
         this.parkId = parkId
         if (this.detailStore.init) {
             this.detailStore.init(this.parkId)
@@ -129,7 +128,6 @@ export default class ParkPaymentConfigModel {
         if (this.currentFetchId !== this.lastFetchId) {
             return
         }
-        debugger
         this.parksSource = data.result.map(park => ({
             text: park.name,
             value: park.id
@@ -209,8 +207,7 @@ export default class ParkPaymentConfigModel {
     }
 
     @action
-    commitSuccess(data) {
-        debugger
+    commitSuccess(data) {   
     }
 
 

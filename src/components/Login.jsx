@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { observer } from "mobx-react";
-import { Form, Icon, Input, Button, Checkbox, Alert } from 'antd';
+import { Form, Icon, Input, Button, Checkbox, Alert, Card } from 'antd';
 import LoginModel from '../models/LoginModel'
 
 const FormItem = Form.Item;
@@ -21,6 +21,7 @@ class Login extends Component {
                 let userName = values.userName
                 let password = values.password
                 let form = document.createElement("form")
+                form.style = "display:none;";
                 form.action = "/paycenter/login"
                 form.method = "post"
                 form.innerHTML = "<input name=\"username\" value=\"" + userName + "\"  />"
@@ -34,39 +35,43 @@ class Login extends Component {
     render() {
         const { getFieldDecorator } = this.props.form;
         return (
-            <div id="loginForm">
-                <Form onSubmit={this.handleSubmit} className="login-form">
-                    <FormItem>
-                        {getFieldDecorator('userName', {
-                            rules: [{ required: true, message: 'Please input your username!' }],
-                        })(
-                            <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Username" />
-                            )}
-                    </FormItem>
-                    <FormItem>
-                        {getFieldDecorator('password', {
-                            rules: [{ required: true, message: 'Please input your Password!' }],
-                        })(
-                            <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="Password" />
-                            )}
-                    </FormItem>
-                    <FormItem>
-                        <Button type="primary" htmlType="submit" className="login-form-button">
-                            Log in
+            <div style={{ height: "100%", width: "100%" }}>
+                <div id="loginTitle">支付管理平台</div>
+
+                <div id="loginForm" >
+                    <Form onSubmit={this.handleSubmit} className="login-form">
+                        <FormItem>
+                            {getFieldDecorator('userName', {
+                                rules: [{ required: true, message: 'Please input your username!' }],
+                            })(
+                                <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Username" />
+                                )}
+                        </FormItem>
+                        <FormItem>
+                            {getFieldDecorator('password', {
+                                rules: [{ required: true, message: 'Please input your Password!' }],
+                            })(
+                                <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="Password" />
+                                )}
+                        </FormItem>
+                        <FormItem>
+                            <Button type="primary" htmlType="submit" className="login-form-button">
+                                Log in
                         </Button>
-                    </FormItem>
+                        </FormItem>
 
-                    {
-                        loginModel.isErr ? (<Alert
-                            message="Error"
-                            description="用户名或密码错误"
-                            type="error"
-                            showIcon
-                        />) : ""
-                    }
+                        {
+                            loginModel.isErr ? (<Alert
+                                message="Error"
+                                description="用户名或密码错误"
+                                type="error"
+                                showIcon
+                            />) : ""
+                        }
 
-                </Form>
+                    </Form>
 
+                </div>
             </div>
 
         );

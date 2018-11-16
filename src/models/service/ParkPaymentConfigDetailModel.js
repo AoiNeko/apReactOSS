@@ -63,8 +63,6 @@ export default class ParkPaymentConfigDetailModel {
     @action
     dataFetch(data) {
         this.dataSource = data.result.list
-
-        debugger
         if (this.parkId !== null) {
             let param = {
                 "url": "/paycenter/parkPaymentConfig/detail",
@@ -86,7 +84,6 @@ export default class ParkPaymentConfigDetailModel {
 
     @action
     parkPaymentConfigGet(data) {
-        debugger
         this.parkConfig = data.result
         this.preConfig()
     }

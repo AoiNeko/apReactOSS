@@ -1,6 +1,7 @@
 import { observable, computed, action } from "mobx";
 import RequestTool from "./RequestTool"
-
+import { message } from 'antd'
+const request = new RequestTool()
 function addMenuToList(menu, menuList, data) {
     console.log(menu)
     if (getMenuById(menuList, menu.id)) {
@@ -60,7 +61,7 @@ class ApIndexModel {
             "success": this.composeMenu.bind(this)
         }
 
-        let request = new RequestTool()
+
         request.commonFetch(param)
     }
 
@@ -68,7 +69,7 @@ class ApIndexModel {
     getMenuName(menuList, resUrl) {
         let name = ""
         menuList.map(menu => {
-            if(menu.resUrl == resUrl) {
+            if (menu.resUrl == resUrl) {
                 name = menu.name
             }
 
@@ -80,7 +81,20 @@ class ApIndexModel {
         return name
     }
 
+    @action
+    signOut() {
+        let param = {
+            "url": "/paycenter/logout",
+            "success": this.signOutSuccess.bind(this)
+        }
+        request.commonFetch(param)
+    }
 
+    @action
+    signOutSuccess(data) {
+        message.success("注销成功")
+        // window.location.href="paycenter/login"
+    }
 
     @action
     composeMenu(data) {

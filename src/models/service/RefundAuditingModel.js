@@ -1,9 +1,10 @@
 import { observable, computed, action } from "mobx";
 import RequestTool from "../RequestTool"
-import { Popconfirm } from 'antd';
+import { Popconfirm, Modal } from 'antd';
 import React, { Component } from "react";
 
 const request = new RequestTool()
+const confirm =  Modal.confirm
 
 export default class RefundAuditingModel {
 
@@ -17,9 +18,9 @@ export default class RefundAuditingModel {
 
     @observable auditingTradeNo = ""
 
-    @observable form = {
+    @observable form = {}
 
-    }
+    @observable auditingLoading = false
 
     @observable order = {}
 
@@ -28,6 +29,8 @@ export default class RefundAuditingModel {
     @observable refundInfo = observable.map({})
 
     @observable refundLoading = true
+
+    @observable initStatus
 
     @observable columns = [{
         title: '车牌号',
@@ -56,22 +59,19 @@ export default class RefundAuditingModel {
     }, {
         title: '退费金额',
         dataIndex: 'amount',
-        key: 'amount',
-        render: (text, record) => {
-          return parseFloat(text / 100).toFixed(2) + "元"
-        }
+        key: 'amount'
     }, {
         title: '状态',
         dataIndex: 'status',
         key: 'status',
         render: (text, record) => {
             if (text == 1) {
-                return "申请"
+                return "待审核"
             }
-            else if (text = 2) {
+            else if (text == 2) {
                 return "通过"
             }
-            else if (text = 4) {
+            else if (text == 4) {
                 return "驳回"
             }
         }
@@ -79,24 +79,27 @@ export default class RefundAuditingModel {
         title: '',
         dataIndex: 'operation',
         render: (text, record) => {
+            let lineName = "详情"
+            if (record.status == 1) {
+                lineName = "审核"
+            }
             return (
                 this.dataSource.length >= 1
                     ? (
-                        <Popconfirm title="确认审核?" onConfirm={() => this.handleDetail(record)}>
-                            <a href="javascript:;">详情</a>
-                        </Popconfirm>
+                        <a href="javascript:;" onClick={() => this.handleDetail(record)}>{lineName}</a>
                     ) : null
             );
         }
     }];
 
     @action
-    getRefundData(current, pageSize) {
+    getRefundData(pageObj, pageSize) {
         this.loading = true
-        let page = current ? current : 1
+        let queryStr = request.comsposeQueryUrl(this.form)
+        let page = pageObj ? pageObj.current : 1
         let size = pageSize ? pageSize : 10
         let param = {
-            "url": "/paycenter/refund/list?page=" + page + "&size=" + size,
+            "url": "/paycenter/refund/list?page=" + page + "&size=" + size + "&" + queryStr,
             "success": this.dataFetch.bind(this)
         }
 
@@ -108,12 +111,12 @@ export default class RefundAuditingModel {
     dataFetch(data) {
         this.loading = false
         this.dataSource = data.result.list;
-        this.pagination.total = data.total
+        this.pagination.total = data.result.total
     }
 
     @action
     handleDetail(record) {
-        console.log("row is ", record)
+        this.auditingLoading = true
         this.auditingTradeNo = record.refundNo
         this.getOrderRefundInfo()
         this.modalVisible = true
@@ -126,19 +129,35 @@ export default class RefundAuditingModel {
 
     @action
     auditingSubmit() {
-
-
-        let param = {
-            "url": "/paycenter/refund/submit?refundNo=" + this.refundInfo.refundNo + "&status=" + this.refundInfo.status + "&auditedComment=" + this.refundInfo.auditingDesc,
-            "success": this.submitSuccess.bind(this)
-        }
-        request.commonFetch(param)
+        let _this = this
+        confirm({
+            title: '操作确认',
+            content: '确认审批？',
+            onOk() {
+                _this.confirmSubmit()
+            },
+            onCancel() {
+                console.log('Cancel');
+            },
+        });
 
     }
 
     @action
+    confirmSubmit() {
+      
+        this.refundLoading = true
+        let param = {
+            "url": "/paycenter/refund/submit?refundNo=" + this.refundInfo.refundNo + "&status=" + this.refundInfo.status + "&auditComment=" + this.refundInfo.auditComment,
+            "success": this.submitSuccess.bind(this)
+        }
+        request.commonFetch(param)
+    }
+
+    @action
     submitSuccess(data) {
-        debugger
+
+
         this.modalVisible = false
     }
 
@@ -151,17 +170,20 @@ export default class RefundAuditingModel {
         }
         request.commonFetch(param)
     }
+
     @action
     orderRefundInfoData(data) {
         this.refundLoading = false
         this.order = data.result.order
+        this.order.coupon = data.result.couponName
         this.payments = data.result.payments
         this.refundInfo = data.result.refund
+        this.initStatus = this.refundInfo.status
     }
 
     @action
     refundInfoDesc(e) {
-        this.refundInfo["auditingDesc"] = e.target.value
+        this.refundInfo["auditComment"] = e.target.value
     }
     @action
     refundInfoStatus(e) {

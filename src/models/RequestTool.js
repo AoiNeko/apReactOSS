@@ -1,5 +1,18 @@
 // import './mockdata'
 import axios from 'axios'
+import { message } from 'antd'
+axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+
+axios.interceptors.response.use((response) => {
+    return response;
+}, function (error) {
+    if (4011 === error.response.status) {
+        window.location = '/paycenter/login';
+    } else {
+        return Promise.reject(error);
+    }
+});
+
 export default class RequestTool {
     commonFetch(param) {
         if (!param.url || !param.success) {
@@ -7,14 +20,6 @@ export default class RequestTool {
             return
         }
 
-        // var myHeaders = new Headers()
-        // myHeaders.append('Content-Type', 'application/json')
-        // const option = {
-        //     method: 'GET',
-        //     headers: myHeaders,
-        //     mode: 'cors',
-        //     cache: 'default'
-        // }
         let _this = this
         axios.get(param.url).then((response) => {
 
@@ -22,14 +27,6 @@ export default class RequestTool {
                 window.location.href = response.url
             }
             if (response.status >= 200 && response.status < 300) {
-
-                // response.text().then((responseText) => {
-                //     console.log(responseText)
-                //     let res = JSON.parse(responseText)
-                //     console.log(res)
-                //     debugger
-                //     param.success(res)
-                // })
                 param.success(response.data)
             }
             else {
@@ -43,6 +40,9 @@ export default class RequestTool {
             if (param.fail) {
                 param.fail(error)
             }
+            else {
+                message.error("请求失败")
+            }
         })
     }
 
@@ -52,18 +52,10 @@ export default class RequestTool {
             return
         }
         axios.post(param.url, param.body).then(function (response) {
-        　  if (response.redirected) {
+            if (response.redirected) {
                 window.location.href = response.url
             }
             if (response.status >= 200 && response.status < 300) {
-
-                // response.text().then((responseText) => {
-                //     console.log(responseText)
-                //     let res = JSON.parse(responseText)
-                //     console.log(res)
-                //     debugger
-                //     param.success(res)
-                // })
                 param.success(response.data)
             }
             else {
@@ -73,9 +65,22 @@ export default class RequestTool {
                 })
             }
         }).catch(function (error) {
-        　　alert(error);
+            if (param.fail) {
+                param.fail(error)
+            }
+            else {
+                message.error("请求失败")
+            }
         });
 
+    }
+
+    comsposeQueryUrl(mapObject) {
+        let queryStr =""
+        for (var i in mapObject) {
+            queryStr += i + "=" + mapObject[i] + "&"
+        }
+        return queryStr.substring(0,  queryStr.length - 1)
     }
 
 }

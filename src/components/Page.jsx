@@ -28,7 +28,7 @@ class Page extends Component {
     getComponent() {
         const res = this.props.res
         if (!res || res == "index") {
-            return (<div>首页</div>)
+            return (<div></div>)
         }
         else if (res == "refund") {
             return (<RefundAuditing history={this.props.history} />)

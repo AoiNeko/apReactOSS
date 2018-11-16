@@ -14,7 +14,6 @@ class PayTypeConfig extends Component {
         const { paySceneId } = this.props
         let typeModel = new PayTypeModel()
         let payscenceModel = store.getPaySceneModel(paySceneId)
-        debugger
         payscenceModel.setPayTypeMap(payType.type, typeModel)
         typeModel.init(payscenceModel, payType.type, paySceneId)
     }

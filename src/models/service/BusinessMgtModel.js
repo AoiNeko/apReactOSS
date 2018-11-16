@@ -23,7 +23,6 @@ export default class BusinessMgtModel {
 
     @action
     configOk() {
-        debugger
         this.confirmLoading = true
         let data = {
             sceneId: this.sceneId,

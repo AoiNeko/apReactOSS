@@ -20,8 +20,9 @@ class RefundAuditing extends Component {
                 <Col span={2} style={{ "display": "flex", "justifyContent": "center", margin: "1vh" }} > <Input placeholder="车牌" onChange={(value) => { store.form.carNo = value.target.value }} /></Col>
                 <Col span={2} style={{ "display": "flex", "justifyContent": "center", margin: "1vh" }}>
                     <Select placeholder="请选择状态" style={{ width: '100%' }} onChange={(value) => { store.form.status = value }}>
-                        <Option value="1">已审核</Option>
-                        <Option value="0">未审核</Option>
+                        <Option value="0">请选择</Option>
+                        <Option value="1">待审核</Option>
+                        <Option value="2">已审核</Option>
                     </Select></Col>
 
                 <Col span={2} style={{ "display": "flex", "justifyContent": "center", margin: "1vh" }} > <DatePicker placeholder="进场时间" onChange={(date, dateString) => { store.form.enterTime = dateString }} /></Col>
@@ -44,7 +45,7 @@ class RefundAuditing extends Component {
             <Modal title="订单审核"
                 visible={store.modalVisible}
                 onOk={() => store.auditingSubmit()}
-                confirmLoading={store.confirmLoading}
+                confirmLoading={store.refundLoading}
                 onCancel={() => store.auditingCancel()}
                 width='90%'
             >

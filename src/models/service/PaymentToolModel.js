@@ -22,7 +22,6 @@ export default class PaymentToolModel {
 
     @action
     configOk() {
-        debugger
         this.confirmLoading = true
         let data = {
             typeId: this.typeId,
