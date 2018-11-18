@@ -45,6 +45,12 @@ class Page extends Component {
         else if (res == "payToolConf") {
             return (<ParkPaymentConfig history={this.props.history} />)
         }
+        else if (res == "paymentPage") {
+            return (<div>支付查询</div>)
+        }
+        else if (res == "refundPage") {
+            return (<div>退款查询</div>)
+        }
         else {
             return (<div>路径未配置</div>)
         }

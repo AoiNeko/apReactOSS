@@ -1,4 +1,4 @@
-// import './mockdata'
+import './mockdata'
 import axios from 'axios'
 import { message } from 'antd'
 axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
