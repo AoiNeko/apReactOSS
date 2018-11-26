@@ -24,7 +24,7 @@ class PayTypeConfig extends Component {
         const { paySceneId } = this.props
         let payscenceModel = store.getPaySceneModel(paySceneId)
         let typeModel = payscenceModel.getPayTypeMap(payType.type)
-        return (<div style={{ "width": "100%", "padding": "2px", "backgroundColor": "rgb(240, 242, 245)" }}>
+        return (<div style={{ "width": "100%", "padding": "2px"}}>
             <Row>
                 <Col span={6}>
                     <div>{payType.name}</div>

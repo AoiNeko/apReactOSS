@@ -32,7 +32,7 @@ import Login from './components/Login'
 
 ReactDOM.render(
   <div style={{height: "100%", width: "100%"}}>
-    <DevTools />
+    {/*<DevTools />*/}
     <BrowserRouter>
         <Switch>
           <Route exact path="/paycenter" component={ApIndex}></Route>

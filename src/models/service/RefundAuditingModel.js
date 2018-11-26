@@ -1,6 +1,6 @@
 import { observable, computed, action } from "mobx";
 import RequestTool from "../RequestTool"
-import { Popconfirm, Modal } from 'antd';
+import { Popconfirm, Modal, message } from 'antd';
 import React, { Component } from "react";
 
 const request = new RequestTool()
@@ -145,7 +145,10 @@ export default class RefundAuditingModel {
 
     @action
     confirmSubmit() {
-      
+        if ( this.refundInfo.auditComment == null) {
+            message.error("请填写理由")
+            return
+        }
         this.refundLoading = true
         let param = {
             "url": "/paycenter/refund/submit?refundNo=" + this.refundInfo.refundNo + "&status=" + this.refundInfo.status + "&auditComment=" + this.refundInfo.auditComment,

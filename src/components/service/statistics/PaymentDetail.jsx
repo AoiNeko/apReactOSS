@@ -26,7 +26,7 @@ class PaymentDetail extends Component {
 
                         <Col span={3} style={{ "display": "flex", "justifyContent": "flex-start", marginTop: '1vh' }} >
                             <Skeleton loading={store.paymentLoading} active paragraph={false} title={{ "width": "5vw" }}>
-                                 {store.paymentInfo.eRType ? store.paymentInfo.eRType : "收款" }
+                                 {store.paymentInfo.ertype ? store.paymentInfo.ertype : "无" }
                             </Skeleton>
                         </Col>
                         <Col span={3} style={{ "display": "flex", "justifyContent": "flex-end", marginTop: '1vh' }} >支付状态：</Col>
