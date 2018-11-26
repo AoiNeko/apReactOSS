@@ -6,6 +6,10 @@ import PaymentTool from './service/PaymentTool'
 import BussinessMgt from './service/BussinessMgt'
 import PayeeConfig from './service/PayeeConfig'
 import ParkPaymentConfig from './service/ParkPaymentConfig'
+import PaymentStatistic from './service/statistics/PaymentStatistic'
+import RefundStatistics from './service/statistics/RefundStatistics'
+import IrregularOrder from './service/statistics/IrregularOrder'
+
 const { Header, Content } = Layout;
 const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
@@ -46,10 +50,13 @@ class Page extends Component {
             return (<ParkPaymentConfig history={this.props.history} />)
         }
         else if (res == "paymentPage") {
-            return (<div>支付查询</div>)
+            return (<PaymentStatistic history={this.props.history}/>)
         }
         else if (res == "refundPage") {
-            return (<div>退款查询</div>)
+            return (<RefundStatistics history={this.props.history}/>)
+        }
+        else if (res == "irregularOrder") {
+            return (<IrregularOrder history={this.props.history}/>)
         }
         else {
             return (<div>路径未配置</div>)

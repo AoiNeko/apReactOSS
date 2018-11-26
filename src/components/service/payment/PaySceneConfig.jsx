@@ -12,13 +12,13 @@ const Option = Select.Option
 class PaySceneConfig extends Component {
     constructor(props) {
         super(props)
-    }
-    componentWillMount() {
         let { payScene } = this.props
         const { store } = this.props
         let model = new PaySceneModel()
         model.setSceneId(payScene.id)
         store.setPaySceneModel(payScene.id, model)
+    }
+    componentWillMount() {
     }
     render() {
 
@@ -28,7 +28,7 @@ class PaySceneConfig extends Component {
         return (<div style={{ "width": "100%", "padding": "2px" }}>
             <Row>
                 <Col span={12}>
-                    <div> {payScene.name} </div>
+                    <div>{payScene.name}</div>
                 </Col>
                 <Col span={6}>
                     <Switch checkedChildren="开" unCheckedChildren="关" checked={model.isChecked} onChange={(checked) => { model.setChecked(checked) }} />

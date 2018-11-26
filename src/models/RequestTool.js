@@ -1,13 +1,16 @@
-import './mockdata'
+// import './mockdata'
 import axios from 'axios'
 import { message } from 'antd'
 axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 axios.interceptors.response.use((response) => {
+    if (response.data && response.data.code == 4011) {
+         window.location.href = '/paycenter/login';
+    }
     return response;
 }, function (error) {
-    if (4011 === error.response.status) {
-        window.location = '/paycenter/login';
+    if (4011 == error.response.status) {
+        window.location.href = '/paycenter/login';
     } else {
         return Promise.reject(error);
     }
@@ -24,6 +27,7 @@ export default class RequestTool {
         axios.get(param.url).then((response) => {
 
             if (response.redirected) {
+
                 window.location.href = response.url
             }
             if (response.status >= 200 && response.status < 300) {

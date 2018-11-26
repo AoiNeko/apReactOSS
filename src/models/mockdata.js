@@ -120,7 +120,7 @@ Mock.mock(/\user/,
     }, {
 
         "id": 418,
-        "name": "结算",
+        "name": "报表查询",
         "parentId": null,
         "resKey": "paymentCalculate",
         "resUrl": "paymentCalculate",
@@ -128,7 +128,7 @@ Mock.mock(/\user/,
         "icon": null,
         "isHidden": false,
         "seq": 1,
-        "description": "结算",
+        "description": "报表查询",
         "roles": null,
         "subRes": null
     }
@@ -161,6 +161,20 @@ Mock.mock(/\user/,
         "description": "退款查询页",
         "roles": null,
         "subRes": null
+    }, {
+
+        "id": 421,
+        "name": "异常订单",
+        "parentId": 418,
+        "resKey": "irregularOrder",
+        "resUrl": "irregularOrder",
+        "level": 1,
+        "icon": null,
+        "isHidden": false,
+        "seq": 1,
+        "description": "异常订单",
+        "roles": null,
+        "subRes": null
     }]
 )
 
@@ -189,3 +203,20 @@ Mock.mock(/payee\/config/, { "code": 200, "desc": "success", "result": [{ "id": 
 
 
 Mock.mock(/park\/search/, { "code": 200, "desc": "success", "result": [{ "id": 1, "desc": null, "name": "悦停车厂", "isDeleted": null, "createdDate": null, "createdBy": null, "updatedDate": null, "updatedBy": null }], "timestamp": 1539936076308 })
+
+
+Mock.mock(/payment\/statistic\/get/, { "code": 200, "desc": "success", "result": { "total": 1, "list": [{
+  "outTradeNo": 1,
+  "createdDate": "1121",
+  "tradeNo": 12,
+  "park": "1车场",
+  "plateNo": "月A12345",
+  "amount": "0.2元",
+  "paymentType": "1",
+  "paymentDesc": 2,
+  "status": "1saf",
+  "tempOrderPaymentId": "123"
+}], "pageNum": 1, "pageSize": 10, "size": 1, "startRow": 1, "endRow": 1, "pages": 1, "prePage": 0, "nextPage": 0, "isFirstPage": true, "isLastPage": true, "hasPreviousPage": false, "hasNextPage": false, "navigatePages": 8, "navigatepageNums": [1], "navigateFirstPage": 1, "navigateLastPage": 1 }, "timestamp": 1539858487374 })
+
+
+Mock.mock(/payment\/statistic\/detail/, { "code": 200, "desc": "success", "result": {}})

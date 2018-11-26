@@ -23,7 +23,7 @@ export default class ParkPaymentConfigDetailModel {
     @action
     init(parkId) {
         this.parkId = parkId
-        this.getBusinessData()
+        this.getPaymentToolsData()
     }
 
     @action
@@ -37,7 +37,7 @@ export default class ParkPaymentConfigDetailModel {
         }
         let request = new RequestTool()
         request.commonFetch(param)
-        this.getPaymentToolsData()
+      
     }
 
     @action
@@ -55,9 +55,8 @@ export default class ParkPaymentConfigDetailModel {
     @action
     paymentToolsFetch(data) {
         this.loading = false
-
         this.paymentTools = data.result.list;
-
+        this.getBusinessData()
     }
 
     @action

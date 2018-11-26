@@ -68,7 +68,7 @@ export default class PayeeConfigModel {
     getPayeeData(values) {
 
         this.loading = true
-        let page = values ? values.current + 1 : 1
+        let page = values ? values.current : 1
         let size = 10
         let param = {
             "url": "/paycenter/payeeConfig/get?page=" + page + "&size=" + size,

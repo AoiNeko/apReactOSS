@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { observer } from "mobx-react";
 import { List, Row, Col, RadioGroup, Radio, Input, Skeleton } from 'antd';
 @observer
-class OrderRefundAuditing extends Component {
+class RefundDetail extends Component {
     constructor(props) {
         super(props)
         const { store } = props
@@ -11,51 +11,47 @@ class OrderRefundAuditing extends Component {
     componentWillMount() {
         const { store } = this.props
         store.getOrderRefundInfo()
-        
+
     }
     render() {
         const { store } = this.props
 
-        let auditingRadio;
+        // let auditingRadio;
 
-        if (store.initStatus!= 1) {
-            auditingRadio = (<Radio.Group onChange={(e) => store.refundInfoStatus(e)} value={store.refundInfo.status} disabled={true}  >
-                                <Radio value={1}>待处理</Radio>
-                                <Radio value={2}>通过</Radio>
-                                <Radio value={4}>驳回</Radio>
-                            </Radio.Group>)
-        }
-        else  {
-            auditingRadio =  (<Radio.Group onChange={(e) => store.refundInfoStatus(e)} value={store.refundInfo.status}   >
-                                <Radio value={1}>待处理</Radio>
-                                <Radio value={2}>通过</Radio>
-                                <Radio value={4}>驳回</Radio>
-                            </Radio.Group>)
-        }
+        // if (store.initStatus!= 1) {
+        //     auditingRadio = (<Radio.Group onChange={(e) => store.refundInfoStatus(e)} value={store.refundInfo.status} disabled={true}  >
+        //                         <Radio value={1}>待处理</Radio>
+        //                         <Radio value={2}>通过</Radio>
+        //                         <Radio value={4}>驳回</Radio>
+        //                     </Radio.Group>)
+        // }
+        // else  {
+        //     auditingRadio =  (<Radio.Group onChange={(e) => store.refundInfoStatus(e)} value={store.refundInfo.status}   >
+        //                         <Radio value={1}>待处理</Radio>
+        //                         <Radio value={2}>通过</Radio>
+        //                         <Radio value={4}>驳回</Radio>
+        //                     </Radio.Group>)
+        // }
+
+        let auditStatus = store.refundInfo.status == 1 ? "待处理" : store.refundInfo.status == 2 ? "通过" : "驳回"
         let paymentIndex = 1
 
         return (<List>
             <List.Item key="1">
                 <div style={{ width: '100%' }}>
                     <Row type="flex" gutter={{ xs: 8, sm: 16, md: 24 }}>
-                        <Col span={3} style={{ "display": "flex", "justifyContent": "flex-end", marginTop: '1vh' }} >车场名：</Col>
-                        <Col span={3} style={{ "display": "flex", "justifyContent": "flex-start", marginTop: '1vh' }} >
-                            <Skeleton loading={store.refundLoading} active paragraph={false} title={{ "width": "5vw" }}>
-                                {store.refundInfo.parkName}
-                            </Skeleton>
+
+                        <Col span={3} style={{ "display": "flex", "justifyContent": "flex-end", marginTop: '1vh' }} >流水号：</Col>
+
+                        <Col span={6} style={{ "display": "flex", "justifyContent": "flex-start", marginTop: '1vh', wordBreak:"break-all" }} >
+                            <Skeleton loading={store.refundLoading} active paragraph={false} title={{ "width": "5vw" }}>{store.refundInfo.refundNo}</Skeleton>
                         </Col>
-                        <Col span={3} style={{ "display": "flex", "justifyContent": "flex-end", marginTop: '1vh' }} >进场时间：</Col>
+
+                        <Col span={3} style={{ "display": "flex", "justifyContent": "flex-end", marginTop: '1vh' }} >状态：</Col>
 
                         <Col span={3} style={{ "display": "flex", "justifyContent": "flex-start", marginTop: '1vh' }} >
-                            <Skeleton loading={store.refundLoading} active paragraph={false} title={{ "width": "5vw" }}>{store.refundInfo.enterTime}</Skeleton>
+                            <Skeleton loading={store.refundLoading} active paragraph={false} title={{ "width": "5vw" }}>{store.refundInfo.status == 2? "已退费" : "未退费"}</Skeleton>
                         </Col>
-                        <Col span={3} style={{ "display": "flex", "justifyContent": "flex-end", marginTop: '1vh' }} >出场时间：</Col>
-
-                        <Col span={3} style={{ "display": "flex", "justifyContent": "flex-start", marginTop: '1vh' }} >
-                            <Skeleton loading={store.refundLoading} active paragraph={false} title={{ "width": "5vw" }}>{store.refundInfo.leaveTime}</Skeleton>
-                        </Col>
-                        {/*<Col span={3} style={{ "display": "flex", "justifyContent": "flex-end", marginTop: '1vh' }} >申请时间：</Col>
-                        <Col span={3} style={{ "display": "flex", "justifyContent": "flex-start", marginTop: '1vh' }} >{store.refundInfo.applyTime}</Col>*/}
                     </Row>
                     <Row type="flex" gutter={{ xs: 8, sm: 16, md: 24 }}>
                         <Col span={3} style={{ "display": "flex", "justifyContent": "flex-end", marginTop: '1vh' }} >申请人：</Col>
@@ -69,15 +65,11 @@ class OrderRefundAuditing extends Component {
                         <Col span={3} style={{ "display": "flex", "justifyContent": "flex-start", marginTop: '1vh' }} >
                             <Skeleton loading={store.refundLoading} active paragraph={false} title={{ "width": "5vw" }}>{store.refundInfo.applyTime}</Skeleton>
                         </Col>
-                        <Col span={3} style={{ "display": "flex", "justifyContent": "flex-end", marginTop: '1vh' }} >停车票：</Col>
 
-                        <Col span={3} style={{ "display": "flex", "justifyContent": "flex-start", marginTop: '1vh' }} >
-                            <Skeleton loading={store.refundLoading} active paragraph={false} title={{ "width": "5vw" }}>{store.order.coupon ? store.order.coupon : "未使用停车票"}</Skeleton>
-                        </Col>
                         <Col span={3} style={{ "display": "flex", "justifyContent": "flex-end", marginTop: '1vh' }} >实付金额：</Col>
 
                         <Col span={3} style={{ "display": "flex", "justifyContent": "flex-start", marginTop: '1vh' }} >
-                            <Skeleton loading={store.refundLoading} active paragraph={false} title={{ "width": "5vw" }}>{parseFloat(store.order.paidAmount /100).toFixed(2) + "元"}</Skeleton>
+                            <Skeleton loading={store.refundLoading} active paragraph={false} title={{ "width": "5vw" }}>{parseFloat(store.order.paidAmount / 100).toFixed(2) + "元"}</Skeleton>
                         </Col>
                     </Row>
                 </div>
@@ -86,7 +78,7 @@ class OrderRefundAuditing extends Component {
                 <div style={{ width: '100%' }}>
                     {
                         store.payments ? store.payments.map((payment) => {
-                            return (<Row type="flex" gutter={{ xs: 8, sm: 16, md: 24 }} key={payment.id}  style = {payment.isCurrent == 1? {"color":"blue"} : {} } >
+                            return (<Row type="flex" gutter={{ xs: 8, sm: 16, md: 24 }} key={payment.id} style={payment.isCurrent == 1 ? { "color": "blue" } : {}} >
                                 <Col span={3} style={{ "display": "flex", "justifyContent": "flex-end", marginTop: '1vh' }} >缴费{paymentIndex++}：</Col>
 
                                 <Col span={3} style={{ "display": "flex", "justifyContent": "flex-start", marginTop: '1vh' }} >
@@ -100,7 +92,7 @@ class OrderRefundAuditing extends Component {
                                 </Col>
 
                                 <Col span={3} style={{ "display": "flex", "justifyContent": "flex-end", marginTop: '1vh' }} >商户订单号：</Col>
-                                <Col span={3} style={{ "display": "flex", "justifyContent": "flex-start", marginTop: '1vh' }} >
+                                <Col span={5} style={{ "display": "flex", "justifyContent": "flex-start", marginTop: '1vh' , wordBreak:"break-all" }} >
                                     <Skeleton loading={store.refundLoading} active paragraph={false} title={{ "width": "5vw" }}>{payment.outTradeNo}</Skeleton>
                                 </Col>
                             </Row>)
@@ -149,14 +141,31 @@ class OrderRefundAuditing extends Component {
                 <div style={{ width: '100%' }}>
                     <Row type="flex" gutter={{ xs: 8, sm: 16, md: 24 }}>
                         <Col span={3} style={{ "display": "flex", "justifyContent": "flex-end", marginTop: '1vh' }} >审核状态: </Col>
-                        <Col span={18} style={{ "display": "flex", "justifyContent": "flex-start", marginTop: '1vh' }} >
-                            {auditingRadio}
+                        <Col span={3} style={{ "display": "flex", "justifyContent": "flex-start", marginTop: '1vh' }} >
+                            <Skeleton loading={store.refundLoading} active>
+                                {auditStatus}
+                            </Skeleton>
+                        </Col>
+
+
+                        <Col span={3} style={{ "display": "flex", "justifyContent": "flex-end", marginTop: '1vh' }} >审核人:</Col>
+                        <Col span={3} style={{ "display": "flex", "justifyContent": "flex-start", marginTop: '1vh' }} >
+                            <Skeleton loading={store.refundLoading} active>
+                                {store.refundInfo.auditor ? store.refundInfo.auditor : ""}
+                            </Skeleton>
+                        </Col>
+
+                        <Col span={3} style={{ "display": "flex", "justifyContent": "flex-end", marginTop: '1vh' }} >审核时间: </Col>
+                        <Col span={3} style={{ "display": "flex", "justifyContent": "flex-start", marginTop: '1vh' }} >
+                            <Skeleton loading={store.refundLoading} active>
+                                {store.refundInfo.auditTime ? store.refundInfo.auditTime : ""}
+                            </Skeleton>
                         </Col>
                     </Row>
                     <Row type="flex" gutter={{ xs: 8, sm: 16, md: 24 }}>
                         <Col span={3} style={{ "display": "flex", "justifyContent": "flex-end", marginTop: '1vh' }} >理由: </Col>
                         <Col span={18} style={{ "display": "flex", "justifyContent": "flex-start", marginTop: '1vh' }} >
-                            <Input.TextArea onChange={(e) => store.refundInfoDesc(e)} value={store.refundInfo.auditComment ? store.refundInfo.auditComment : ""}></Input.TextArea>
+                            <Input.TextArea value={store.refundInfo.auditComment ? store.refundInfo.auditComment : ""} disabled></Input.TextArea>
                         </Col>
                     </Row>
                 </div>
@@ -165,4 +174,4 @@ class OrderRefundAuditing extends Component {
     }
 
 }
-export default OrderRefundAuditing
+export default RefundDetail

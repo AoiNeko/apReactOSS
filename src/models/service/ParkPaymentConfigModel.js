@@ -42,7 +42,7 @@ export default class ParkPaymentConfigModel {
     getParkPaymengConfigData(values) {
 
         this.loading = true
-        let page = values ? values.current + 1 : 1
+        let page = values ? values.current : 1
         let size = 10
         let param = {
             "url": "/paycenter/parkPaymentConfig/get?page=" + page + "&size=" + size,
@@ -58,6 +58,7 @@ export default class ParkPaymentConfigModel {
         this.modalTitle = '通用支付配置'
         this.isNewParkConfig = false
         this.parkId = 0
+        this.cooperator = null
         if (this.detailStore.init) {
             this.detailStore.init(this.parkId)
         }
@@ -69,6 +70,7 @@ export default class ParkPaymentConfigModel {
         this.isNewParkConfig = true
         this.modalTitle = "新增车场配置"
         this.parkId = null
+        this.cooperator = null
         if (this.detailStore.init) {
             this.detailStore.init(this.parkId)
         }
@@ -81,6 +83,7 @@ export default class ParkPaymentConfigModel {
         this.isNewParkConfig = false
         this.modalTitle = "修改车场配置"
         this.parkId = parkId
+        this.cooperator = null
         if (this.detailStore.init) {
             this.detailStore.init(this.parkId)
         }

@@ -47,7 +47,7 @@ class RefundAuditing extends Component {
                 onOk={() => store.auditingSubmit()}
                 confirmLoading={store.refundLoading}
                 onCancel={() => store.auditingCancel()}
-                width='90%'
+                width='80%'
             >
                 <OrderRefundAuditing store={store} />
             </Modal>

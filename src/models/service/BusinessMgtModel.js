@@ -71,7 +71,7 @@ export default class BusinessMgtModel {
     getBusinessData(values) {
 
         this.loading = true
-        let page = values ? values.current + 1 : 1
+        let page = values ? values.current : 1
         let size = 10
         let param = {
             "url": "/paycenter/bussinessMgt/get?page=" + page + "&size=" + size,

@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { observer } from "mobx-react";
 import { action } from "mobx";
-import { Row, Col, Input, Select, Button, Table, List, Spin } from 'antd';
+import { Row, Col, Input, Select, Button, Table, Collapse, Spin, List } from 'antd';
 import PaySceneConfig from './PaySceneConfig'
 import ParkPaymentConfigDetailModel from '../../../models/service/ParkPaymentConfigDetailModel'
 
 const Option = Select.Option
-
+const Panel = Collapse.Panel
 const store = new ParkPaymentConfigDetailModel()
 
 @observer
@@ -18,6 +18,8 @@ class ParkPaymentConfigDetail extends Component {
     }
     render() {
         const { parkStore } = this.props
+
+        let key = 1
         return (
             <div>
 
@@ -39,8 +41,8 @@ class ParkPaymentConfigDetail extends Component {
                             </Select>
                         </Col>
 
-                         <Col span={4}>
-                            <Input placeholder="合作商代码" value={parkStore.cooperator} onChange={(value)=> parkStore.editCooperator(value)}/>
+                        <Col span={4}>
+                            <Input placeholder="合作商代码" value={parkStore.cooperator} onChange={(value) => parkStore.editCooperator(value)} />
                         </Col>
                     </Row> : ""
                 }
@@ -48,13 +50,22 @@ class ParkPaymentConfigDetail extends Component {
                 <List dataSource={store.dataSource}
                     itemLayout="horizontal"
                     renderItem={item => (
-                        <List.Item>
+                        <List.Item key={key++}>
                             <PaySceneConfig payScene={item} store={store} />
                         </List.Item>
                     )}>
-
-
                 </List>
+                {/*<Collapse defaultActiveKey={() => { 
+                    console.log(activeKeys)
+                    return activeKeys.length > 0 ? activeKeys : ""}}> 
+                    {
+                        store.dataSource.map((item) => {
+                            return (<Panel header={item.name} key={key++}>
+                                <PaySceneConfig payScene={item} store={store} />
+                            </Panel>)
+                        })
+                    }
+                </Collapse>*/}
             </div>)
     }
 
