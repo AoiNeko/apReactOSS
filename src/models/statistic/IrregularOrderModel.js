@@ -20,8 +20,10 @@ export default class RefundStatisticModel {
 
 
 
-
-
+    @action
+    initialize() {
+        this.form = {}
+    }
 
     @action
     getData(values) {

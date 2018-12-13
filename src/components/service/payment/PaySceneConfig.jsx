@@ -15,8 +15,8 @@ class PaySceneConfig extends Component {
         let { payScene } = this.props
         const { store } = this.props
         let model = new PaySceneModel()
-        model.setSceneId(payScene.id)
-        store.setPaySceneModel(payScene.id, model)
+        model.setSceneId(payScene.scene)
+        store.setPaySceneModel(payScene.scene, model)
     }
     componentWillMount() {
     }
@@ -24,7 +24,8 @@ class PaySceneConfig extends Component {
 
         let { payScene } = this.props
         const { store } = this.props
-        let model = store.paySceneMap[payScene.id]
+        debugger;
+        let model = store.paySceneMap[payScene.scene]
         return (<div style={{ "width": "100%", "padding": ".5vw","borderRadius":"1vh", "boxShadow":"1px 1px 8px rgb(240, 242, 245), -1px -1px 8px grey" , "backgroundColor": "rgb(240, 242, 245)" }}>
             <Row>
                 <Col span={12}>
@@ -39,7 +40,7 @@ class PaySceneConfig extends Component {
                     itemLayout="horizontal"
                     renderItem={item => (
                         <List.Item>
-                            <PayTypeConfig payType={item} store={store} paySceneId={payScene.id}/>
+                            <PayTypeConfig payType={item} store={store} paySceneId={payScene.scene}/>
                         </List.Item>
                     )}>
                 </List> : ""

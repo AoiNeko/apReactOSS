@@ -34,7 +34,10 @@ export default class RefundStatisticModel {
 
     @observable initStatus
 
-
+    @action
+    initialize() {
+        this.form = {}
+    }
 
     @action
     configOk() {

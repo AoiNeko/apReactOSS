@@ -12,6 +12,7 @@ const store = new RefundAuditingModel();
 @observer
 class RefundAuditing extends Component {
     componentWillMount() {
+        store.initialize()
         store.getRefundData()
     }
     render() {

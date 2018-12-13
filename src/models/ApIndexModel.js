@@ -46,6 +46,8 @@ function getMenuById(menuList, id) {
 
 class ApIndexModel {
 
+    @observable userName = "anonymous"
+
     @observable userMenu = [];
 
     @computed
@@ -97,8 +99,10 @@ class ApIndexModel {
     }
 
     @action
-    composeMenu(data) {
+    composeMenu(res) {
         console.log(data)
+
+        let data = res["menuList"]
         if (data.length > 0) {
             let menuList = []
             for (let index = 0; index < data.length; index++) {
@@ -110,6 +114,7 @@ class ApIndexModel {
         else {
             this.userMenu = []
         }
+        this.userName = res["userName"]
     }
 
 }

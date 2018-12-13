@@ -34,9 +34,12 @@ class Login extends Component {
 
     render() {
         const { getFieldDecorator } = this.props.form;
+        let error = window.location.search.indexOf("error") >  0
+
+
         return (
             <div style={{ height: "100%", width: "100%" }}>
-                <div id="loginTitle">支付管理平台</div>
+                <div id="loginTitle">支付中心管理平台</div>
 
                 <div id="loginForm" >
                     <Form onSubmit={this.handleSubmit} className="login-form">
@@ -61,8 +64,8 @@ class Login extends Component {
                         </FormItem>
 
                         {
-                            loginModel.isErr ? (<Alert
-                                message="Error"
+                            error ? (<Alert
+                                message="错误"
                                 description="用户名或密码错误"
                                 type="error"
                                 showIcon

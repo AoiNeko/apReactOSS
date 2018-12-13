@@ -23,6 +23,11 @@ export default class PaymentStatisticModel {
     paymentLoading = false
 
     @action
+    initialize() {
+        this.form = {}
+    }
+
+    @action
     getPaymentInfo() {
         this.confirmLoading = true
         this.paymentLoading = true

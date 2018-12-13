@@ -93,6 +93,11 @@ export default class RefundAuditingModel {
     }];
 
     @action
+    initialize() {
+        this.form = {}
+    }
+
+    @action
     getRefundData(pageObj, pageSize) {
         this.loading = true
         let queryStr = request.comsposeQueryUrl(this.form)

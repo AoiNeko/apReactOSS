@@ -15,12 +15,13 @@ const store = new ParkPaymentConfigModel()
 @observer
 class ParkPaymentConfig extends Component {
     componentWillMount() {
+        
         store.getParkPaymengConfigData()
     }
     render() {
         return (<div>
             <Row>
-                <Col span={6} style={{ "display": "flex", "justifyContent": "center", margin: "1vh" }} > <Input placeholder="名称" onChange={(value) => { store.form.name = value.target.value }} /></Col>
+                {/*<Col span={6} style={{ "display": "flex", "justifyContent": "center", margin: "1vh" }} > <Input placeholder="名称" onChange={(value) => { store.form.name = value.target.value }} /></Col>*/}
                 <Col span={1} style={{ "display": "flex", "justifyContent": "center", margin: "1vh" }}>
                     <Button type="primary"  onClick={() => store.getParkPaymengConfigData()}>查询</Button>
                 </Col>

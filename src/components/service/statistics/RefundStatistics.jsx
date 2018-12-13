@@ -13,6 +13,7 @@ const store = new RefundStatisticModel()
 @observer
 class RefundStatistics extends Component {
     componentWillMount() { 
+        store.initialize()
         store.getData()
     }
      render() {

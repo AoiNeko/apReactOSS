@@ -11,6 +11,7 @@ const store = new PaymentStatisticModel()
 @observer
 class PaymentStatistic extends Component {
     componentWillMount() {
+        store.initialize()
         store.getData()
     }
     render() {
@@ -25,15 +26,15 @@ class PaymentStatistic extends Component {
                         <Option value="2">支付宝</Option>
                         <Option value="3">网付通</Option>
                         <Option value="4">共享余额</Option>
-                        <Option value="5">支付宝</Option>
+                        <Option value="5">优惠券支付</Option>
                         <Option value="7">线下支付</Option>
                     </Select></Col>
-                <Col span={2} style={{ "display": "flex", "justifyContent": "center", margin: "1vh" }} > <DatePicker placeholder="支付日期" onChange={(date, dateString) => { store.form.enterTime = dateString }} /></Col>
+                <Col span={2} style={{ "display": "flex", "justifyContent": "center", margin: "1vh" }} > <DatePicker placeholder="支付日期" onChange={(date, dateString) => { store.form.createdDate = dateString }} /></Col>
                 <Col span={2} style={{ "display": "flex", "justifyContent": "center", margin: "1vh" }}>
                     <Select placeholder="支付状态" style={{ width: '100%' }} onChange={(value) => { store.form.paymentStatus = value }}>
                         <Option value="0">请选择</Option>
-                        <Option value="1">成功</Option>
-                        <Option value="2">失败</Option>
+                        <Option value="1">已支付</Option>
+                        <Option value="2">未支付</Option>
                     </Select></Col>
                 <Col span={2} style={{ "display": "flex", "justifyContent": "center", margin: "1vh" }}>
                     <Select placeholder="收支类型" style={{ width: '100%' }} onChange={(value) => { store.form.eRType = value }}>

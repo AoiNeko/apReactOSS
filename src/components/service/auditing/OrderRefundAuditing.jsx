@@ -54,8 +54,8 @@ class OrderRefundAuditing extends Component {
                         <Col span={3} style={{ "display": "flex", "justifyContent": "flex-start", marginTop: '1vh' }} >
                             <Skeleton loading={store.refundLoading} active paragraph={false} title={{ "width": "5vw" }}>{store.refundInfo.leaveTime}</Skeleton>
                         </Col>
-                        {/*<Col span={3} style={{ "display": "flex", "justifyContent": "flex-end", marginTop: '1vh' }} >申请时间：</Col>
-                        <Col span={3} style={{ "display": "flex", "justifyContent": "flex-start", marginTop: '1vh' }} >{store.refundInfo.applyTime}</Col>*/}
+                        <Col span={3} style={{ "display": "flex", "justifyContent": "flex-end", marginTop: '1vh' }} >订单总额：</Col>
+                        <Col span={3} style={{ "display": "flex", "justifyContent": "flex-start", marginTop: '1vh' }} >{parseFloat(store.order.totalAmount /100).toFixed(2) + "元"}</Col>
                     </Row>
                     <Row type="flex" gutter={{ xs: 8, sm: 16, md: 24 }}>
                         <Col span={3} style={{ "display": "flex", "justifyContent": "flex-end", marginTop: '1vh' }} >申请人：</Col>

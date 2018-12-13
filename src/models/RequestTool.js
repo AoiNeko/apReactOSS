@@ -5,10 +5,14 @@ axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 axios.interceptors.response.use((response) => {
     if (response.data && response.data.code == 4011) {
-         window.location.href = '/paycenter/login';
+        window.location.href = '/paycenter/login';
     }
     return response;
 }, function (error) {
+    if ("Network Error" == error.message) {
+        window.location.href = '/paycenter/login';
+    }
+
     if (4011 == error.response.status) {
         window.location.href = '/paycenter/login';
     } else {
@@ -80,11 +84,11 @@ export default class RequestTool {
     }
 
     comsposeQueryUrl(mapObject) {
-        let queryStr =""
+        let queryStr = ""
         for (var i in mapObject) {
             queryStr += i + "=" + mapObject[i] + "&"
         }
-        return queryStr.substring(0,  queryStr.length - 1)
+        return queryStr.substring(0, queryStr.length - 1)
     }
 
 }

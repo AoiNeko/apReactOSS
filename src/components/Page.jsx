@@ -25,8 +25,6 @@ class Page extends Component {
     componentWillMount() {
         const { props } = this
         const res = props.res ? props.res : ""
-        console.log(res)
-        console.log('componentWillMount：页面将要渲染')
     }
 
     getComponent() {

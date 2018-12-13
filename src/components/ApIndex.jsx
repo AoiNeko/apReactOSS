@@ -21,7 +21,6 @@ class ApIndex extends Component {
   }
 
   handleClick(e) {
-    console.log(e)
     let { res } = e.item.props
     this.props.history.push("/paycenter/p/" + res)
   }
@@ -35,9 +34,12 @@ class ApIndex extends Component {
       <Layout style={{ height: "100%", width: "100%" }}>
         <Header>
           <div className="logo">支付中心</div>
+          <div style={{"color":"white", "float": "right", "paddingLeft": "5px"}}>{store.userName}</div>
           <Popconfirm title="退出登录?" placement="bottom"  onConfirm={() => store.signOut()}>
-            <Avatar icon="user" style={{ marginTop: "1em", display: "flex", justifyContent: "center", paddingTop: "5px", float: "right" }} />
+            <Avatar icon="user" style={{ marginTop: "1em", display: "flex", justifyContent: "center", paddingTop: "5px", float: "right" }}>
+            </Avatar>
           </Popconfirm>
+          
         </Header>
         <Layout>
           <Sider style={{ minHeight: "100%" }}>

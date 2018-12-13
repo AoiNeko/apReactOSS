@@ -7,175 +7,178 @@ Mock.mock(/\list/, { "code": 200, "desc": "success", "result": { "total": 11, "l
 
 
 Mock.mock(/\user/,
-    [{
-        "createdDate": 1537933886000,
-        "updatedDate": 1537933882000,
-        "createdBy": "superadmin",
-        "updatedBy": "superadmin",
-        "isDeleted": false,
-        "id": 411,
-        "name": "退费管理",
-        "parentId": null,
-        "resKey": null,
-        "resUrl": "refundIndex",
-        "level": 0,
-        "icon": null,
-        "isHidden": false,
-        "seq": 1,
-        "description": "支付中心退费管理",
-        "roles": null,
-        "subRes": null,
-        "action": null
-    }, {
-        "createdDate": 1537933957000,
-        "updatedDate": 1537933960000,
-        "createdBy": "superadmin",
-        "updatedBy": "superadmin",
-        "isDeleted": false,
-        "id": 412,
-        "name": "退费审核",
-        "parentId": 411,
-        "resKey": "refund",
-        "resUrl": "refund",
-        "level": 1,
-        "icon": null,
-        "isHidden": false,
-        "seq": 1,
-        "description": "退费审核",
-        "roles": null,
-        "subRes": null,
-        "action": "refund"
-    }, {
+    {
+        userName: "liangli",
+        menuList: [{
+            "createdDate": 1537933886000,
+            "updatedDate": 1537933882000,
+            "createdBy": "superadmin",
+            "updatedBy": "superadmin",
+            "isDeleted": false,
+            "id": 411,
+            "name": "退费管理",
+            "parentId": null,
+            "resKey": null,
+            "resUrl": "refundIndex",
+            "level": 0,
+            "icon": null,
+            "isHidden": false,
+            "seq": 1,
+            "description": "支付中心退费管理",
+            "roles": null,
+            "subRes": null,
+            "action": null
+        }, {
+            "createdDate": 1537933957000,
+            "updatedDate": 1537933960000,
+            "createdBy": "superadmin",
+            "updatedBy": "superadmin",
+            "isDeleted": false,
+            "id": 412,
+            "name": "退费审核",
+            "parentId": 411,
+            "resKey": "refund",
+            "resUrl": "refund",
+            "level": 1,
+            "icon": null,
+            "isHidden": false,
+            "seq": 1,
+            "description": "退费审核",
+            "roles": null,
+            "subRes": null,
+            "action": "refund"
+        }, {
 
-        "id": 413,
-        "name": "支付管理",
-        "parentId": null,
-        "resKey": "paymgt",
-        "resUrl": "paymgt",
-        "level": 0,
-        "icon": null,
-        "isHidden": false,
-        "seq": 1,
-        "description": "支付管理",
-        "roles": null,
-        "subRes": null
-    }, {
+            "id": 413,
+            "name": "支付管理",
+            "parentId": null,
+            "resKey": "paymgt",
+            "resUrl": "paymgt",
+            "level": 0,
+            "icon": null,
+            "isHidden": false,
+            "seq": 1,
+            "description": "支付管理",
+            "roles": null,
+            "subRes": null
+        }, {
 
-        "id": 414,
-        "name": "支付工具管理",
-        "parentId": 413,
-        "resKey": "payTool",
-        "resUrl": "payTool",
-        "level": 1,
-        "icon": null,
-        "isHidden": false,
-        "seq": 1,
-        "description": "支付工具管理",
-        "roles": null,
-        "subRes": null
+            "id": 414,
+            "name": "支付工具管理",
+            "parentId": 413,
+            "resKey": "payTool",
+            "resUrl": "payTool",
+            "level": 1,
+            "icon": null,
+            "isHidden": false,
+            "seq": 1,
+            "description": "支付工具管理",
+            "roles": null,
+            "subRes": null
+        }
+            , {
+
+            "id": 415,
+            "name": "业务管理",
+            "parentId": 413,
+            "resKey": "bussinessMgt",
+            "resUrl": "bussinessMgt",
+            "level": 1,
+            "icon": null,
+            "isHidden": false,
+            "seq": 1,
+            "description": "业务管理",
+            "roles": null,
+            "subRes": null
+        }
+            , {
+
+            "id": 416,
+            "name": "支付工具配置",
+            "parentId": 413,
+            "resKey": "payToolConf",
+            "resUrl": "payToolConf",
+            "level": 1,
+            "icon": null,
+            "isHidden": false,
+            "seq": 1,
+            "description": "支付工具配置",
+            "roles": null,
+            "subRes": null
+        }
+            , {
+            "id": 417,
+            "name": "收款方配置",
+            "parentId": 413,
+            "resKey": "payeeConf",
+            "resUrl": "payeeConf",
+            "level": 1,
+            "icon": null,
+            "isHidden": false,
+            "seq": 1,
+            "description": "收款方配置",
+            "roles": null,
+            "subRes": null
+        }, {
+
+            "id": 418,
+            "name": "报表查询",
+            "parentId": null,
+            "resKey": "paymentCalculate",
+            "resUrl": "paymentCalculate",
+            "level": 0,
+            "icon": null,
+            "isHidden": false,
+            "seq": 1,
+            "description": "报表查询",
+            "roles": null,
+            "subRes": null
+        }
+            , {
+
+            "id": 419,
+            "name": "支付查询页",
+            "parentId": 418,
+            "resKey": "paymentPage",
+            "resUrl": "paymentPage",
+            "level": 1,
+            "icon": null,
+            "isHidden": false,
+            "seq": 1,
+            "description": "支付查询页",
+            "roles": null,
+            "subRes": null
+        }
+            , {
+
+            "id": 420,
+            "name": "退款查询页",
+            "parentId": 418,
+            "resKey": "refundPage",
+            "resUrl": "refundPage",
+            "level": 1,
+            "icon": null,
+            "isHidden": false,
+            "seq": 1,
+            "description": "退款查询页",
+            "roles": null,
+            "subRes": null
+        }, {
+
+            "id": 421,
+            "name": "异常订单",
+            "parentId": 418,
+            "resKey": "irregularOrder",
+            "resUrl": "irregularOrder",
+            "level": 1,
+            "icon": null,
+            "isHidden": false,
+            "seq": 1,
+            "description": "异常订单",
+            "roles": null,
+            "subRes": null
+        }]
     }
-        , {
-
-        "id": 415,
-        "name": "业务管理",
-        "parentId": 413,
-        "resKey": "bussinessMgt",
-        "resUrl": "bussinessMgt",
-        "level": 1,
-        "icon": null,
-        "isHidden": false,
-        "seq": 1,
-        "description": "业务管理",
-        "roles": null,
-        "subRes": null
-    }
-        , {
-
-        "id": 416,
-        "name": "支付工具配置",
-        "parentId": 413,
-        "resKey": "payToolConf",
-        "resUrl": "payToolConf",
-        "level": 1,
-        "icon": null,
-        "isHidden": false,
-        "seq": 1,
-        "description": "支付工具配置",
-        "roles": null,
-        "subRes": null
-    }
-        , {
-        "id": 417,
-        "name": "收款方配置",
-        "parentId": 413,
-        "resKey": "payeeConf",
-        "resUrl": "payeeConf",
-        "level": 1,
-        "icon": null,
-        "isHidden": false,
-        "seq": 1,
-        "description": "收款方配置",
-        "roles": null,
-        "subRes": null
-    }, {
-
-        "id": 418,
-        "name": "报表查询",
-        "parentId": null,
-        "resKey": "paymentCalculate",
-        "resUrl": "paymentCalculate",
-        "level": 0,
-        "icon": null,
-        "isHidden": false,
-        "seq": 1,
-        "description": "报表查询",
-        "roles": null,
-        "subRes": null
-    }
-        , {
-
-        "id": 419,
-        "name": "支付查询页",
-        "parentId": 418,
-        "resKey": "paymentPage",
-        "resUrl": "paymentPage",
-        "level": 1,
-        "icon": null,
-        "isHidden": false,
-        "seq": 1,
-        "description": "支付查询页",
-        "roles": null,
-        "subRes": null
-    }
-        , {
-
-        "id": 420,
-        "name": "退款查询页",
-        "parentId": 418,
-        "resKey": "refundPage",
-        "resUrl": "refundPage",
-        "level": 1,
-        "icon": null,
-        "isHidden": false,
-        "seq": 1,
-        "description": "退款查询页",
-        "roles": null,
-        "subRes": null
-    }, {
-
-        "id": 421,
-        "name": "异常订单",
-        "parentId": 418,
-        "resKey": "irregularOrder",
-        "resUrl": "irregularOrder",
-        "level": 1,
-        "icon": null,
-        "isHidden": false,
-        "seq": 1,
-        "description": "异常订单",
-        "roles": null,
-        "subRes": null
-    }]
 )
 
 
@@ -205,18 +208,22 @@ Mock.mock(/payee\/config/, { "code": 200, "desc": "success", "result": [{ "id": 
 Mock.mock(/park\/search/, { "code": 200, "desc": "success", "result": [{ "id": 1, "desc": null, "name": "悦停车厂", "isDeleted": null, "createdDate": null, "createdBy": null, "updatedDate": null, "updatedBy": null }], "timestamp": 1539936076308 })
 
 
-Mock.mock(/payment\/statistic\/get/, { "code": 200, "desc": "success", "result": { "total": 1, "list": [{
-  "outTradeNo": 1,
-  "createdDate": "1121",
-  "tradeNo": 12,
-  "park": "1车场",
-  "plateNo": "月A12345",
-  "amount": "0.2元",
-  "paymentType": "1",
-  "paymentDesc": 2,
-  "status": "1saf",
-  "tempOrderPaymentId": "123"
-}], "pageNum": 1, "pageSize": 10, "size": 1, "startRow": 1, "endRow": 1, "pages": 1, "prePage": 0, "nextPage": 0, "isFirstPage": true, "isLastPage": true, "hasPreviousPage": false, "hasNextPage": false, "navigatePages": 8, "navigatepageNums": [1], "navigateFirstPage": 1, "navigateLastPage": 1 }, "timestamp": 1539858487374 })
+Mock.mock(/payment\/statistic\/get/, {
+    "code": 200, "desc": "success", "result": {
+        "total": 1, "list": [{
+            "outTradeNo": 1,
+            "createdDate": "1121",
+            "tradeNo": 12,
+            "park": "1车场",
+            "plateNo": "月A12345",
+            "amount": "0.2元",
+            "paymentType": "1",
+            "paymentDesc": 2,
+            "status": "1saf",
+            "tempOrderPaymentId": "123"
+        }], "pageNum": 1, "pageSize": 10, "size": 1, "startRow": 1, "endRow": 1, "pages": 1, "prePage": 0, "nextPage": 0, "isFirstPage": true, "isLastPage": true, "hasPreviousPage": false, "hasNextPage": false, "navigatePages": 8, "navigatepageNums": [1], "navigateFirstPage": 1, "navigateLastPage": 1
+    }, "timestamp": 1539858487374
+})
 
 
-Mock.mock(/payment\/statistic\/detail/, { "code": 200, "desc": "success", "result": {}})
+Mock.mock(/payment\/statistic\/detail/, { "code": 200, "desc": "success", "result": {} })

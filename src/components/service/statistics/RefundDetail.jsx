@@ -43,32 +43,36 @@ class RefundDetail extends Component {
 
                         <Col span={3} style={{ "display": "flex", "justifyContent": "flex-end", marginTop: '1vh' }} >流水号：</Col>
 
-                        <Col span={6} style={{ "display": "flex", "justifyContent": "flex-start", marginTop: '1vh', wordBreak:"break-all" }} >
+                        <Col span={4} style={{ "display": "flex", "justifyContent": "flex-start", marginTop: '1vh', wordBreak:"break-all" }} >
                             <Skeleton loading={store.refundLoading} active paragraph={false} title={{ "width": "5vw" }}>{store.refundInfo.refundNo}</Skeleton>
                         </Col>
 
                         <Col span={3} style={{ "display": "flex", "justifyContent": "flex-end", marginTop: '1vh' }} >状态：</Col>
 
-                        <Col span={3} style={{ "display": "flex", "justifyContent": "flex-start", marginTop: '1vh' }} >
+                        <Col span={4} style={{ "display": "flex", "justifyContent": "flex-start", marginTop: '1vh' }} >
                             <Skeleton loading={store.refundLoading} active paragraph={false} title={{ "width": "5vw" }}>{store.refundInfo.status == 2? "已退费" : "未退费"}</Skeleton>
+                        </Col>
+                        
+                        <Col span={4} style={{ "display": "flex", "justifyContent": "flex-start", marginTop: '1vh' }} >
+                            <Skeleton loading={store.refundLoading} active paragraph={false} title={{ "width": "5vw" }}>{parseFloat(store.order.totalAmount / 100).toFixed(2) + "元"}</Skeleton>
                         </Col>
                     </Row>
                     <Row type="flex" gutter={{ xs: 8, sm: 16, md: 24 }}>
                         <Col span={3} style={{ "display": "flex", "justifyContent": "flex-end", marginTop: '1vh' }} >申请人：</Col>
 
-                        <Col span={3} style={{ "display": "flex", "justifyContent": "flex-start", marginTop: '1vh' }} >
+                        <Col span={4} style={{ "display": "flex", "justifyContent": "flex-start", marginTop: '1vh' }} >
                             <Skeleton loading={store.refundLoading} active paragraph={false} title={{ "width": "5vw" }}>{store.refundInfo.apply}</Skeleton>
                         </Col>
 
                         <Col span={3} style={{ "display": "flex", "justifyContent": "flex-end", marginTop: '1vh' }} >申请时间：</Col>
 
-                        <Col span={3} style={{ "display": "flex", "justifyContent": "flex-start", marginTop: '1vh' }} >
+                        <Col span={4} style={{ "display": "flex", "justifyContent": "flex-start", marginTop: '1vh' }} >
                             <Skeleton loading={store.refundLoading} active paragraph={false} title={{ "width": "5vw" }}>{store.refundInfo.applyTime}</Skeleton>
                         </Col>
 
                         <Col span={3} style={{ "display": "flex", "justifyContent": "flex-end", marginTop: '1vh' }} >实付金额：</Col>
 
-                        <Col span={3} style={{ "display": "flex", "justifyContent": "flex-start", marginTop: '1vh' }} >
+                        <Col span={4} style={{ "display": "flex", "justifyContent": "flex-start", marginTop: '1vh' }} >
                             <Skeleton loading={store.refundLoading} active paragraph={false} title={{ "width": "5vw" }}>{parseFloat(store.order.paidAmount / 100).toFixed(2) + "元"}</Skeleton>
                         </Col>
                     </Row>
