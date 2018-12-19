@@ -43,16 +43,17 @@ class RefundDetail extends Component {
 
                         <Col span={3} style={{ "display": "flex", "justifyContent": "flex-end", marginTop: '1vh' }} >流水号：</Col>
 
-                        <Col span={4} style={{ "display": "flex", "justifyContent": "flex-start", marginTop: '1vh', wordBreak:"break-all" }} >
+                        <Col span={4} style={{ "display": "flex", "justifyContent": "flex-start", marginTop: '1vh', wordBreak: "break-all" }} >
                             <Skeleton loading={store.refundLoading} active paragraph={false} title={{ "width": "5vw" }}>{store.refundInfo.refundNo}</Skeleton>
                         </Col>
 
                         <Col span={3} style={{ "display": "flex", "justifyContent": "flex-end", marginTop: '1vh' }} >状态：</Col>
 
                         <Col span={4} style={{ "display": "flex", "justifyContent": "flex-start", marginTop: '1vh' }} >
-                            <Skeleton loading={store.refundLoading} active paragraph={false} title={{ "width": "5vw" }}>{store.refundInfo.status == 2? "已退费" : "未退费"}</Skeleton>
+                            <Skeleton loading={store.refundLoading} active paragraph={false} title={{ "width": "5vw" }}>{store.refundInfo.status == 2 ? "已退费" : "未退费"}</Skeleton>
                         </Col>
-                        
+
+                        <Col span={3} style={{ "display": "flex", "justifyContent": "flex-end", marginTop: '1vh' }} >订单总额：</Col>
                         <Col span={4} style={{ "display": "flex", "justifyContent": "flex-start", marginTop: '1vh' }} >
                             <Skeleton loading={store.refundLoading} active paragraph={false} title={{ "width": "5vw" }}>{parseFloat(store.order.totalAmount / 100).toFixed(2) + "元"}</Skeleton>
                         </Col>
@@ -96,7 +97,7 @@ class RefundDetail extends Component {
                                 </Col>
 
                                 <Col span={3} style={{ "display": "flex", "justifyContent": "flex-end", marginTop: '1vh' }} >商户订单号：</Col>
-                                <Col span={5} style={{ "display": "flex", "justifyContent": "flex-start", marginTop: '1vh' , wordBreak:"break-all" }} >
+                                <Col span={5} style={{ "display": "flex", "justifyContent": "flex-start", marginTop: '1vh', wordBreak: "break-all" }} >
                                     <Skeleton loading={store.refundLoading} active paragraph={false} title={{ "width": "5vw" }}>{payment.outTradeNo}</Skeleton>
                                 </Col>
                             </Row>)

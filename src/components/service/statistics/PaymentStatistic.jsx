@@ -43,6 +43,7 @@ class PaymentStatistic extends Component {
                         <Option value="2">退费</Option>
                     </Select></Col>
                 <Col span={2} style={{ "display": "flex", "justifyContent": "center", margin: "1vh" }} > <Input placeholder="订单号" onChange={(value) => { store.form.tradeNo = value.target.value }} /></Col>
+                  <Col span={2} style={{ "display": "flex", "justifyContent": "center", margin: "1vh" }} > <Input placeholder="外部流水号" onChange={(value) => { store.form.outTradeNo = value.target.value }} /></Col>
                 <Col span={1} style={{ "display": "flex", "justifyContent": "center", margin: "1vh" }}>
                     <Button type="primary" onClick={() => store.getData()}>查询</Button>
                 </Col>
