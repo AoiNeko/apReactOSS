@@ -55,7 +55,7 @@ export default class RefundStatisticModel {
     @action
     getData(values) {
         this.loading = true
-        let queryStr = request.comsposeQueryUrl(this.form)
+        let queryStr = request.comsposeQueryUrl(this.form) + "&status=2"
         let page = values ? values.current : 1
         let size = 10
         let param = {
@@ -68,7 +68,7 @@ export default class RefundStatisticModel {
 
     exportData() {
         let queryUrl = request.comsposeQueryUrl(this.form)
-        window.location.href = "/paycenter/refund/export?" + queryUrl
+        window.location.href = "/paycenter/refund/export?" + queryUrl + "&status=2"
     }
 
     @action

@@ -20,13 +20,6 @@ class RefundStatistics extends Component {
         return (<div>
             <Row>
                 <Col span={2} style={{ "display": "flex", "justifyContent": "center", margin: "1vh" }} > <Input placeholder="车牌" onChange={(value) => { store.form.carNo = value.target.value }} /></Col>
-                <Col span={2} style={{ "display": "flex", "justifyContent": "center", margin: "1vh" }}>
-                    <Select placeholder="请选择状态" style={{ width: '100%' }} onChange={(value) => { store.form.status = value }}>
-                        <Option value="0">请选择</Option>
-                        <Option value="1">待审核</Option>
-                        <Option value="2">已审核</Option>
-                    </Select></Col>
-
                 <Col span={2} style={{ "display": "flex", "justifyContent": "center", margin: "1vh" }} > <DatePicker placeholder="进场时间" onChange={(date, dateString) => { store.form.enterTime = dateString }} /></Col>
                 <Col span={2} style={{ "display": "flex", "justifyContent": "center", margin: "1vh" }} > <DatePicker placeholder="出场时间" onChange={(date, dateString) => { store.form.leaveTime = dateString }} /></Col>
                 <Col span={2} style={{ "display": "flex", "justifyContent": "center", margin: "1vh" }} > <DatePicker placeholder="申请时间" onChange={(date, dateString) => { store.form.applyTime = dateString }} /></Col>
