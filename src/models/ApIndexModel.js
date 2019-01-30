@@ -50,6 +50,8 @@ class ApIndexModel {
 
     @observable userMenu = [];
 
+    @observable collapsed = false
+
     @computed
     get menuList() {
         return this.userMenu
@@ -62,10 +64,14 @@ class ApIndexModel {
             "url": "/paycenter/user/sys/res",
             "success": this.composeMenu.bind(this)
         }
-
-
         request.commonFetch(param)
     }
+
+    @action
+    toggleCollapsed() {
+        this.collapsed = !this.collapsed
+    }
+
 
     @action
     getMenuName(menuList, resUrl) {

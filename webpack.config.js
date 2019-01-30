@@ -7,11 +7,51 @@ module.exports = {
   entry: [
     './src/index'
   ],
+  externals: {
+    "react": {
+      commonjs: "react",
+      commonjs2: "react",
+      amd: "React",
+      root: "React"
+    },
+    "react-dom": {
+      commonjs: "react-dom",
+      commonjs2: "react-dom",
+      amd: "ReactDOM",
+      root: "ReactDOM"
+    },
+    // "react-router": {
+    //   commonjs: "react-router",
+    //   commonjs2: "react-router"
+    // },
+    // "react-router-dom": {
+    //   commonjs: "react-router-dom",
+    //   commonjs2: "react-router-dom"
+    // },
+    // "mobx": {
+    //   commonjs: "mobx",
+    //   commonjs2: "mobx",
+    // },
+    // "mobx-react": {
+    //   commonjs: "mobx-react",
+    //   commonjs2: "mobx-react",
+    //   amd: "mobxReact",
+    //   root: "mobxReact"
+    // },
+    "antd": {
+      commonjs: "antd",
+      commonjs2: "antd",
+      amd: "antd",
+      root: "antd"
+    }
+
+  },
   output: {
-    path: path.join('E:/projects/paycenter/src/main/resources/static', 'js'),
+    path: path.join('D:/airparking/paycenter/src/main/resources/static/', 'js'),
     filename: 'bundle.js',
     publicPath: '/static/',
-    libraryTarget: "umd"
+    
+    libraryTarget: 'umd',
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin()
@@ -20,7 +60,14 @@ module.exports = {
     extensions: ['.js', '.jsx']
   },
   devServer: {
-    historyApiFallback: true
+    historyApiFallback: true,
+    proxy: {
+      '/user/*': {
+        target: 'http://localhost:8090',
+        changeOrigin: true,
+        secure: false
+      }
+    }
   },
   externals: {
     "react": {

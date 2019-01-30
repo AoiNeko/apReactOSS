@@ -37,10 +37,16 @@ export default class PayTypeModel {
     @observable
     payeeConfigDesc
 
+    @observable
+    activityText
+
     @action
-    init(payscenceModel, payType, paySceneId, payeeId) {
+    init(payscenceModel, payType, paySceneId, payeeId, activityText) {
         this.setPaysceneId(paySceneId)
         this.setPayType(payType)
+        this.setActivityTextValue(activityText)
+        this.payeeConfigJson = null
+        this.payeeConfigDesc = null
         if (payscenceModel.hasType(payType)) {
             this.setChecked(true)
             let payee = payscenceModel.payeeMap[payType]
@@ -56,11 +62,17 @@ export default class PayTypeModel {
         this.isChecked = false
         this.payeeConfigJson = ""
         this.payeeConfigDesc = ""
+        this.activityText = ""
     }
 
     @action
     setChecked(isChecked) {
         this.isChecked = isChecked
+    }
+
+    @action
+    setActivityTextValue(value) {
+        this.activityText = value
     }
 
     /**
@@ -151,5 +163,10 @@ export default class PayTypeModel {
     @action
     setPayeeDesc(value) {
         this.payeeConfigDesc = value.target.value
+    }
+
+    @action
+    setActivityText(value) {
+        this.activityText = value.target.value
     }
 }

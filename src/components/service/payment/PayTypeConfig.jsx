@@ -8,14 +8,30 @@ const { TextArea } = Input
 
 @observer
 class PayTypeConfig extends Component {
+    constructor(props) {
+        super(props)
+    }
     componentWillMount() {
+
         let { payType } = this.props
         const { store } = this.props
         const { paySceneId } = this.props
-        let typeModel = new PayTypeModel()
+
         let payscenceModel = store.getPaySceneModel(paySceneId)
-        payscenceModel.setPayTypeMap(payType.type, typeModel)
-        typeModel.init(payscenceModel, payType.type, paySceneId)
+
+        let typeModel = payscenceModel.getPayTypeMap(payType.type)
+        if (!typeModel) {
+            typeModel = new PayTypeModel()
+            payscenceModel.setPayTypeMap(payType.type, typeModel)
+        }
+        typeModel.clear()
+        let activityText = null
+        let payee = null
+        if (payscenceModel.payeeMap[payType.type]) {
+            activityText = payscenceModel.payeeMap[payType.type].activityText
+            payee = payscenceModel.payeeMap[payType.type].key
+        }
+        typeModel.init(payscenceModel, payType.type, paySceneId, payee, activityText)
     }
 
     render() {
@@ -24,7 +40,9 @@ class PayTypeConfig extends Component {
         const { paySceneId } = this.props
         let payscenceModel = store.getPaySceneModel(paySceneId)
         let typeModel = payscenceModel.getPayTypeMap(payType.type)
-        return (<div style={{ "width": "100%", "padding": "2px"}}>
+
+
+        return (<div style={{ "width": "100%", "padding": "2px" }}>
             <Row>
                 <Col span={6}>
                     <div>{payType.name}</div>
@@ -32,6 +50,10 @@ class PayTypeConfig extends Component {
                 <Col span={6}>
                     <Switch checkedChildren="开" unCheckedChildren="关" checked={typeModel.isChecked} onChange={(checked) => { typeModel.setChecked(checked) }} />
                 </Col>
+                {
+                    typeModel.isChecked ?
+                        <Col span={3}>收款人</Col> : ""
+                }
                 {
                     typeModel.isChecked ?
                         this.renderPayee(payType, typeModel) : ""
@@ -72,13 +94,27 @@ class PayTypeConfig extends Component {
         return (
             <div>
                 <Row>
+                    <Col span={6}>
+                        <div>收款支付配置</div>
+                    </Col>
                     <Col span={12}>
                         <TextArea autosize placeholder="填写收款人的JSON格式的信息对" value={typeModel.payeeConfigJson} onChange={(value) => typeModel.setPayeeConfigJson(value)}></TextArea>
                     </Col>
                 </Row>
                 <Row>
+                    <Col span={6}>
+                        <div>备注</div>
+                    </Col>
                     <Col span={12}>
                         <Input placeholder="填写备注" value={typeModel.payeeConfigDesc} onChange={(value) => typeModel.setPayeeDesc(value)}></Input>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col span={6}>
+                        <div>活动信息</div>
+                    </Col>
+                    <Col span={12}>
+                        <Input placeholder="填写活动内容（客户看到的活动信息）" value={typeModel.activityText} onChange={(value) => typeModel.setActivityText(value)}></Input>
                     </Col>
                 </Row>
             </div>

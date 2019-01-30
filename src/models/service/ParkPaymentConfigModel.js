@@ -1,6 +1,6 @@
 import { observable, computed, action } from "mobx";
 import RequestTool from "../RequestTool"
-import { Popconfirm , message } from 'antd';
+import { Popconfirm, message, Button } from 'antd';
 import React, { Component } from "react";
 
 
@@ -22,7 +22,7 @@ export default class ParkPaymentConfigModel {
     @observable
     parkId = 0
     @observable
-    cooperator 
+    cooperator
     @observable
     isNewParkConfig = false
     //新增车场配置时选中的车场信息
@@ -115,7 +115,7 @@ export default class ParkPaymentConfigModel {
 
         let request = new RequestTool()
         request.commonFetch(param)
-       
+
 
     }
 
@@ -152,7 +152,7 @@ export default class ParkPaymentConfigModel {
     configOk() {
         if (this.isNewParkConfig && this.parkSelect.length == 0) {
             message.error("选择配置的车场")
-            return 
+            return
         }
 
         let parkPaymentArray = []
@@ -168,7 +168,8 @@ export default class ParkPaymentConfigModel {
                                 let paymentObj = {
                                     "sceneId": sceneId,
                                     "typeId": typeId,
-                                    "payee": typeModel.payeeSelect[0].key
+                                    "payee": typeModel.payeeSelect[0].key,
+                                    "activityText": typeModel.activityText
                                 }
 
                                 let payeeConfigObj = {
@@ -186,7 +187,7 @@ export default class ParkPaymentConfigModel {
                 }
             }
         }
-        
+
         if (this.isNewParkConfig && this.parkSelect.length > 0) {
             this.parkId = this.parkSelect[0].key
         }
@@ -210,7 +211,8 @@ export default class ParkPaymentConfigModel {
     }
 
     @action
-    commitSuccess(data) {   
+    commitSuccess(data) {
+         this.getParkPaymengConfigData()
     }
 
 
@@ -225,6 +227,22 @@ export default class ParkPaymentConfigModel {
         this.editParkConfig(this.parkId)
     }
 
+    @action
+    delete(record) {
+        let requestObj = {
+            "parkId": record.parkId,
+        }
+
+        let param = {
+            "url": "/paycenter/parkPaymentConfig/delete",
+            "success": this.commitSuccess.bind(this),
+            "body": requestObj
+        }
+
+        request.commonPost(param)
+
+       
+    }
 
     columns = [{
         title: 'id',
@@ -241,9 +259,12 @@ export default class ParkPaymentConfigModel {
             return (
                 this.dataSource.length >= 1
                     ? (
-                        <Popconfirm title="Sure to delete?" onConfirm={() => this.handleDetail(record)}>
-                            <a href="javascript:;">详情</a>
-                        </Popconfirm>
+                        <div>
+                            <Button type="dashed" onClick={() => this.handleDetail(record)} style={{ "marginRight": "5px" }}>详情</Button>
+                            <Popconfirm title="确定删除该车场的配置?" onConfirm={() => this.delete(record)}>
+                                <Button type="dashed" >删除</Button>
+                            </Popconfirm>
+                        </div>
                     ) : null
             );
         }

@@ -21,6 +21,9 @@ class ApIndex extends Component {
   }
 
   handleClick(e) {
+    if (!e.item) {
+      return
+    }
     let { res } = e.item.props
     this.props.history.push("/paycenter/p/" + res)
   }
@@ -34,21 +37,32 @@ class ApIndex extends Component {
       <Layout style={{ height: "100%", width: "100%" }}>
         <Header>
           <div className="logo">支付中心</div>
-          <div style={{"color":"white", "float": "right", "paddingLeft": "5px"}}>{store.userName}</div>
-          <Popconfirm title="退出登录?" placement="bottom"  onConfirm={() => store.signOut()}>
+          <div style={{ "color": "white", "float": "right", "paddingLeft": "5px" }}>{store.userName}</div>
+          <Popconfirm title="退出登录?" placement="bottom" onConfirm={() => store.signOut()}>
             <Avatar icon="user" style={{ marginTop: "1em", display: "flex", justifyContent: "center", paddingTop: "5px", float: "right" }}>
             </Avatar>
           </Popconfirm>
-          
+
         </Header>
         <Layout>
-          <Sider style={{ minHeight: "100%" }}>
+
+          <Sider style={{ minHeight: "100%" }}
+            trigger={null}
+            collapsible
+            collapsed={store.collapsed}
+          >
+
             <Menu
               onClick={this.handleClick}
 
               defaultSelectedKeys={['1']}
               defaultOpenKeys={['sub1']}
               mode="inline">
+              <Icon
+                className={store.collapsed? "sidebarIconUnfold":"sidebarIcon"}
+                type={store.collapsed ? 'menu-unfold' : 'menu-fold'}
+                onClick={() => store.toggleCollapsed()}
+              />
               {
                 store.userMenu.map((menu) => {
                   return (<SubMenu key={menu.id} res={menu.resource} title={<span><Icon type="mail" /><span>{menu.name}</span></span>}>

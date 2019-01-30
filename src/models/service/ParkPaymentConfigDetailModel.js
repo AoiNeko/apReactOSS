@@ -37,7 +37,7 @@ export default class ParkPaymentConfigDetailModel {
         }
         let request = new RequestTool()
         request.commonFetch(param)
-      
+
     }
 
     @action
@@ -109,6 +109,7 @@ export default class ParkPaymentConfigDetailModel {
         for (var key in this.paySceneMap) {
             if (this.paySceneMap.hasOwnProperty(key)) {
                 var sceneModel = this.paySceneMap[key];
+                sceneModel.setChecked(false)
                 for (var typeKey in sceneModel.payTypeMap) {
                     if (sceneModel.payTypeMap.hasOwnProperty(typeKey)) {
                         var typeModel = sceneModel.payTypeMap[typeKey];
@@ -118,17 +119,16 @@ export default class ParkPaymentConfigDetailModel {
 
             }
         }
-
-
         for (var index = 0; index < this.parkConfig.length; index++) {
             var element = this.parkConfig[index];
             let model = this.paySceneMap[element.payScene]
             if (model) {
                 model.setChecked(true)
-                model.addPayType(element.payType, { key: element.payee, text: element.payeeName })
+                model.addPayType(element.payType, { key: element.payee, text: element.payeeName, activityText: element.activityText })
+
                 for (var i in model.payTypeMap) {
                     var typeModel = model.payTypeMap[i]
-                    typeModel.init(model, i, element.payScene, element.payee)
+                    typeModel.init(model, i, element.payScene, element.payee, element.activityText)
                 }
             }
         }

@@ -24,7 +24,6 @@ class PaySceneConfig extends Component {
 
         let { payScene } = this.props
         const { store } = this.props
-        debugger;
         let model = store.paySceneMap[payScene.scene]
         return (<div style={{ "width": "100%", "padding": ".5vw","borderRadius":"1vh", "boxShadow":"1px 1px 8px rgb(240, 242, 245), -1px -1px 8px grey" , "backgroundColor": "rgb(240, 242, 245)" }}>
             <Row>
