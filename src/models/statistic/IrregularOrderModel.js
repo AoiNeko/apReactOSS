@@ -79,7 +79,17 @@ export default class RefundStatisticModel {
         title: '支付金额',
         dataIndex: 'paidAmount',
         key: 'paidAmount',
-    }, {
+    },
+    {
+        title: '折扣金额',
+        dataIndex: 'discountAmount',
+        key: 'discountAmount',
+    }, 
+    {
+        title: '减免金额',
+        dataIndex: 'reduceAmount',
+        key: 'reduceAmount',
+    },  {
          title: '支付时间',
         dataIndex: 'paymentDate',
         key: 'paymentDate'

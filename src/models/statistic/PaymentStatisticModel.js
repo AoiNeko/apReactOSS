@@ -25,6 +25,7 @@ export default class PaymentStatisticModel {
     @action
     initialize() {
         this.form = {}
+        this.dataSource = []
     }
 
     @action

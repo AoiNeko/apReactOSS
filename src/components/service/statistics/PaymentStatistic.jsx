@@ -12,7 +12,7 @@ const store = new PaymentStatisticModel()
 class PaymentStatistic extends Component {
     componentWillMount() {
         store.initialize()
-        store.getData()
+        // store.getData()
     }
     render() {
         return (<div>
